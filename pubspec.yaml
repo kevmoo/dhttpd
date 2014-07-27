@@ -1,0 +1,4 @@
+name: simple_http_server
+dependencies:
+  shelf_static: 0.2.0
+  args: any
