@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:args/args.dart';
+import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
 
@@ -25,8 +26,9 @@ void main(List args) {
 
   argParser.parse(args);
 
-  var handler = createStaticHandler(Directory.current.path,
-                                    defaultDocument: 'index.html');
+  var handler = createStaticHandler(Directory.current.path, defaultDocument: 'index.html');
 
-  io.serve(handler, 'localhost', port).then((_) => print('Server started on port $port'));
+  var pipeline = const Pipeline().addMiddleware(logRequests()).addHandler(handler);
+
+  io.serve(pipeline, 'localhost', port).then((_) => print('Server started on port $port'));
 }
