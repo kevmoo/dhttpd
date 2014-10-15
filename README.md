@@ -12,15 +12,20 @@ Use the `pub global` command to install this into your system.
 
 ## Use
 
-You can run this server from any local directory.
+If you have [modified your PATH][path], you can run this server from any local directory
 
-    $ pub global run simple_http_server
+```
+$ simple_http_server
+```
+
+Otherwise you can use the `pub global` command.
+
+```
+$ pub global run simple_http_server
+```
 
 ## Configure
 
 * `--port` - Set the port. Defaults to 8080.
 
-## Known issues
-
-* Startup is slow. Tracking: https://code.google.com/p/dart/issues/detail?id=20212
-* Does not support SSL.
+[path]: https://www.dartlang.org/tools/pub/cmd/pub-global.html#running-a-script-from-your-path
