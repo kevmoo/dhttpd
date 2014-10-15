@@ -4,31 +4,34 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
 
-const int DEFAULT_PORT = 8080;
+const int _DEFAULT_PORT = 8080;
 
-void main(List args) {
-  var port = DEFAULT_PORT;
+void main(List<String> args) {
+  var argParser = new ArgParser()
+      ..addOption('port', abbr: 'p', defaultsTo: _DEFAULT_PORT.toString(),
+                      help: 'The port to listen on.', valueHelp: 'port')
+      ..addFlag('help', negatable: false, help: 'Displays the help.');
 
-  var argParser = new ArgParser();
-  argParser.addOption('port', abbr: 'p', defaultsTo: DEFAULT_PORT.toString(),
-                      help: 'The port to listen on.', valueHelp: 'port', callback: (_port) {
-    port = int.parse(_port, onError: (source) {
-      stderr.writeln('ERROR: Port must be a number.');
-      exit(1);
-    });
+  var results = argParser.parse(args);
+
+  if (results['help']) {
+    print(argParser.getUsage());
+    exit(1);
+  }
+
+  var port = int.parse(results['port'], onError: (source) {
+    stderr.writeln('port must be a number');
+    exit(1);
   });
-  argParser.addFlag('help', negatable: false, help: 'Displays the help.', callback: (help) {
-    if (help) {
-      print(argParser.getUsage());
-      exit(1);
-    }
+
+  var handler = createStaticHandler(Directory.current.path,
+      defaultDocument: 'index.html');
+
+  var pipeline = const Pipeline()
+      .addMiddleware(logRequests())
+      .addHandler(handler);
+
+  io.serve(pipeline, 'localhost', port).then((_) {
+    print('Server started on port $port');
   });
-
-  argParser.parse(args);
-
-  var handler = createStaticHandler(Directory.current.path, defaultDocument: 'index.html');
-
-  var pipeline = const Pipeline().addMiddleware(logRequests()).addHandler(handler);
-
-  io.serve(pipeline, 'localhost', port).then((_) => print('Server started on port $port'));
 }
