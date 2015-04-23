@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:args/args.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
@@ -15,7 +16,7 @@ void main(List<String> args) {
   var results = argParser.parse(args);
 
   if (results['help']) {
-    print(argParser.getUsage());
+    print(argParser.usage);
     exit(1);
   }
 
