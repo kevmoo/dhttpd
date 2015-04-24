@@ -1,17 +1,19 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:shelf/shelf.dart';
-import 'package:shelf/shelf_io.dart' as io;
-import 'package:shelf_static/shelf_static.dart';
+import 'package:simple_http_server/simple_http_server.dart';
 
 const int _DEFAULT_PORT = 8080;
 
-void main(List<String> args) {
+main(List<String> args) async {
   var argParser = new ArgParser()
-      ..addOption('port', abbr: 'p', defaultsTo: _DEFAULT_PORT.toString(),
-                      help: 'The port to listen on.', valueHelp: 'port')
-      ..addFlag('help', negatable: false, help: 'Displays the help.');
+    ..addOption('port',
+        abbr: 'p',
+        defaultsTo: _DEFAULT_PORT.toString(),
+        help: 'The port to listen on.',
+        valueHelp: 'port')
+    ..addOption('path', help: 'The path to serve (defaults to the cwd).')
+    ..addFlag('help', negatable: false, help: 'Displays the help.');
 
   var results = argParser.parse(args);
 
@@ -25,14 +27,10 @@ void main(List<String> args) {
     exit(1);
   });
 
-  var handler = createStaticHandler(Directory.current.path,
-      defaultDocument: 'index.html');
+  String path =
+      results.wasParsed('path') ? results['path'] : Directory.current.path;
 
-  var pipeline = const Pipeline()
-      .addMiddleware(logRequests())
-      .addHandler(handler);
+  await SimpleHttpServer.start(path: path, port: port);
 
-  io.serve(pipeline, 'localhost', port).then((_) {
-    print('Server started on port $port');
-  });
+  print('Server started on port $port');
 }

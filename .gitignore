@@ -2,4 +2,5 @@
 packages
 .DS_Store
 pubspec.lock
+.project
 .settings/
