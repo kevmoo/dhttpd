@@ -1,3 +1,5 @@
+library simple_http_server;
+
 import 'dart:async';
 import 'dart:io';
 

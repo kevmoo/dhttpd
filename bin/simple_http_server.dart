@@ -3,17 +3,16 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:simple_http_server/simple_http_server.dart';
 
-const int _DEFAULT_PORT = 8080;
-
 main(List<String> args) async {
   var argParser = new ArgParser()
     ..addOption('port',
         abbr: 'p',
-        defaultsTo: _DEFAULT_PORT.toString(),
-        help: 'The port to listen on.',
-        valueHelp: 'port')
-    ..addOption('path', help: 'The path to serve (defaults to the cwd).')
-    ..addFlag('help', negatable: false, help: 'Displays the help.');
+        defaultsTo: DEFAULT_PORT.toString(),
+        valueHelp: 'port',
+        help: 'The port to listen on.')
+    ..addOption('path',
+        valueHelp: 'path', help: 'The path to serve (defaults to the cwd).')
+    ..addFlag('help', abbr: 'h', negatable: false, help: 'Displays the help.');
 
   var results = argParser.parse(args);
 
@@ -28,7 +27,7 @@ main(List<String> args) async {
   });
 
   String path =
-      results.wasParsed('path') ? results['path'] : Directory.current.path;
+      results['path'] != null ? results['path'] : Directory.current.path;
 
   await SimpleHttpServer.start(path: path, port: port);
 
