@@ -6,21 +6,29 @@ import 'dart:io';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
+import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 
 const int DEFAULT_PORT = 8080;
 
 class SimpleHttpServer {
   static Future<SimpleHttpServer> start(
-      {String path, int port: DEFAULT_PORT}) async {
+      {String path, int port: DEFAULT_PORT, String allowOrigin}) async {
     if (path == null) path = Directory.current.path;
 
-    var handler = createStaticHandler(Directory.current.path,
+    final handler = createStaticHandler(Directory.current.path,
         defaultDocument: 'index.html');
 
-    var pipeline =
-        const Pipeline().addMiddleware(logRequests()).addHandler(handler);
+    final pipeline =
+        const Pipeline().addMiddleware(logRequests());
 
-    HttpServer server = await io.serve(pipeline, 'localhost', port);
+    if (allowOrigin != null) {
+      final corsHeaders = {
+        'Access-Control-Allow-Origin': allowOrigin,
+      };
+      pipeline.addMiddleware(shelf_cors.createCorsHeadersMiddleware(corsHeaders: corsHeaders));
+    }
+
+    HttpServer server = await io.serve(pipeline.addHandler(handler), 'localhost', port);
     return new SimpleHttpServer._(server, path);
   }
 
