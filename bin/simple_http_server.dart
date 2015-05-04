@@ -12,8 +12,8 @@ main(List<String> args) async {
         help: 'The port to listen on.')
     ..addOption('path',
         valueHelp: 'path', help: 'The path to serve (defaults to the cwd).')
-    ..addOption('origin',
-        valueHelp: 'origin', help: "The value for the 'Access-Control-Allow-Origin' header.")
+    ..addOption('allow-origin',
+        valueHelp: 'allow-origin', help: "The value for the 'Access-Control-Allow-Origin' header.")
     ..addFlag('help', abbr: 'h', negatable: false, help: 'Displays the help.');
 
   var results = argParser.parse(args);
@@ -31,7 +31,7 @@ main(List<String> args) async {
   String path =
       results['path'] != null ? results['path'] : Directory.current.path;
 
-  await SimpleHttpServer.start(path: path, port: port, origin: results['origin']);
+  await SimpleHttpServer.start(path: path, port: port, allowOrigin: results['allow-origin']);
 
   print('Server started on port $port');
 }

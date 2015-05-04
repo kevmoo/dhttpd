@@ -12,7 +12,7 @@ const int DEFAULT_PORT = 8080;
 
 class SimpleHttpServer {
   static Future<SimpleHttpServer> start(
-      {String path, int port: DEFAULT_PORT, String origin}) async {
+      {String path, int port: DEFAULT_PORT, String allowOrigin}) async {
     if (path == null) path = Directory.current.path;
 
     final handler = createStaticHandler(Directory.current.path,
@@ -21,9 +21,9 @@ class SimpleHttpServer {
     final pipeline =
         const Pipeline().addMiddleware(logRequests());
 
-    if (origin != null) {
+    if (allowOrigin != null) {
       final corsHeaders = {
-        'Access-Control-Allow-Origin': origin,
+        'Access-Control-Allow-Origin': allowOrigin,
       };
       pipeline.addMiddleware(shelf_cors.createCorsHeadersMiddleware(corsHeaders: corsHeaders));
     }
