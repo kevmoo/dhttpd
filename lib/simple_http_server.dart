@@ -9,10 +9,11 @@ import 'package:shelf_static/shelf_static.dart';
 import 'package:shelf_cors/shelf_cors.dart' as shelf_cors;
 
 const int DEFAULT_PORT = 8080;
+const String DEFAULT_HOST = 'localhost';
 
 class SimpleHttpServer {
   static Future<SimpleHttpServer> start(
-      {String path, int port: DEFAULT_PORT, String allowOrigin}) async {
+      {String path, int port: DEFAULT_PORT, String allowOrigin, address: DEFAULT_HOST}) async {
     if (path == null) path = Directory.current.path;
 
     final handler = createStaticHandler(Directory.current.path,
@@ -28,7 +29,7 @@ class SimpleHttpServer {
       pipeline.addMiddleware(shelf_cors.createCorsHeadersMiddleware(corsHeaders: corsHeaders));
     }
 
-    HttpServer server = await io.serve(pipeline.addHandler(handler), 'localhost', port);
+    HttpServer server = await io.serve(pipeline.addHandler(handler), address, port);
     return new SimpleHttpServer._(server, path);
   }
 
