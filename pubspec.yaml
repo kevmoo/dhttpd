@@ -1,6 +1,6 @@
 name: simple_http_server
 description: A static file HTTP server for easy directory serving.
-version: 0.2.0
+version: 0.3.0
 homepage: https://github.com/sethladd/simple_http_server
 authors:
 - Seth Ladd <sethladd@gmail.com>
