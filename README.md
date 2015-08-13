@@ -12,20 +12,24 @@ Use the `pub global` command to install this into your system.
 
 ## Use
 
-If you have [modified your PATH][path], you can run this server from any local directory
+If you have [modified your PATH][path], you can run this server from any
+local directory.
 
 ```
-$ simple_http_server
+$ dhttpd
 ```
 
 Otherwise you can use the `pub global` command.
 
 ```
-$ pub global run simple_http_server
+$ pub global run dhttpd
 ```
 
 ## Configure
 
 * `--port` - Set the port. Defaults to 8080.
+* `--path` - Set the path to server. Defaults to cwd.
+* `--host` - Hostname to listen on. Defaults to localhost.
+* `--allow-origin` - Value for the 'Access-Control-Allow-Origin' header.
 
 [path]: https://www.dartlang.org/tools/pub/cmd/pub-global.html#running-a-script-from-your-path

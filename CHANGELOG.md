@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.1
+
+* Fixed bug with setting the path from the command line.
+* Start the server with `dhttpd`.
+
 ## 0.3.0
 
 * New `host` command-line flag, to set

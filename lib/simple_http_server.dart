@@ -16,7 +16,7 @@ class SimpleHttpServer {
       {String path, int port: DEFAULT_PORT, String allowOrigin, address: DEFAULT_HOST}) async {
     if (path == null) path = Directory.current.path;
 
-    final handler = createStaticHandler(Directory.current.path,
+    final handler = createStaticHandler(path,
         defaultDocument: 'index.html');
 
     final pipeline =
