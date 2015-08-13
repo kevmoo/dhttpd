@@ -1,5 +1,3 @@
-import '_boot.dart';
+import 'package:simple_http_server/src/_boot.dart';
 
-main(List<String> args) async {
-  bootServer(args);
-}
+main(List<String> args) => bootServer(args);
