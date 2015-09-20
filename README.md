@@ -1,14 +1,15 @@
-simple_http_server
+dhttpd
 ==================
 
-A simple HTTP server that can serve up any directory.
+A simple HTTP server that can serve up any directory,
+built with Dart.
 Inspired by `python -m SimpleHTTPServer`.
 
 ## Install
 
 Use the `pub global` command to install this into your system.
 
-    $ pub global activate simple_http_server
+    $ pub global activate dhttpd
 
 ## Use
 

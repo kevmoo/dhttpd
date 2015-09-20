@@ -2,10 +2,9 @@ library _boot;
 
 import 'dart:io';
 import 'package:args/args.dart';
-import 'package:simple_http_server/simple_http_server.dart';
+import 'package:dhttpd/dhttpd.dart';
 
 bootServer(List<String> args) async {
-
   var argParser = new ArgParser()
     ..addOption('port',
         abbr: 'p',
@@ -19,7 +18,8 @@ bootServer(List<String> args) async {
         valueHelp: 'host',
         help: 'The hostname to listen on (defaults to "localhost").')
     ..addOption('allow-origin',
-        valueHelp: 'allow-origin', help: "The value for the 'Access-Control-Allow-Origin' header.")
+        valueHelp: 'allow-origin',
+        help: "The value for the 'Access-Control-Allow-Origin' header.")
     ..addFlag('help', abbr: 'h', negatable: false, help: 'Displays the help.');
 
   var results = argParser.parse(args);
@@ -39,8 +39,11 @@ bootServer(List<String> args) async {
   String path =
       results['path'] != null ? results['path'] : Directory.current.path;
 
-  await SimpleHttpServer.start(path: path, port: port, allowOrigin: results['allow-origin'], address: hostname);
+  await Dhttpd.start(
+      path: path,
+      port: port,
+      allowOrigin: results['allow-origin'],
+      address: hostname);
 
   print('Server started on port $port');
-
 }
