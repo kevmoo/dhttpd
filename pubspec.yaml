@@ -1,7 +1,7 @@
-name: simple_http_server
+name: dhttpd
 description: A static file HTTP server for easy directory serving.
 version: 0.3.1
-homepage: https://github.com/sethladd/simple_http_server
+homepage: https://github.com/sethladd/dhttpd
 authors:
 - Seth Ladd <sethladd@gmail.com>
 
@@ -14,5 +14,4 @@ dependencies:
   args: ">=0.12.0+1 <0.14.0"
 
 executables:
-  simple_http_server:
   dhttpd:

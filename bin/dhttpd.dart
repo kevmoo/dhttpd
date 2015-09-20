@@ -1,5 +1,3 @@
 import '_boot.dart';
 
-main(List<String> args) async {
-  bootServer(args);
-}
+main(List<String> args) => bootServer(args);
