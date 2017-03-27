@@ -33,4 +33,8 @@ $ pub global run dhttpd
 * `--host` - Hostname to listen on. Defaults to localhost.
 * `--allow-origin` - Value for the 'Access-Control-Allow-Origin' header.
 
+## TODO
+
+* SSL support (patches welcome!)
+
 [path]: https://www.dartlang.org/tools/pub/cmd/pub-global.html#running-a-script-from-your-path
