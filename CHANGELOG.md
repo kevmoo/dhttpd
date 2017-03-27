@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.0.0
+
+* No change in functionality, just version and doc tweaks.
+
 ## 0.3.1
 
 * Fixed bug with setting the path from the command line.
