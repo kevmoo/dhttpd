@@ -26,10 +26,21 @@ Otherwise you can use the `pub global` command.
 $ pub global run dhttpd
 ```
 
+Here's an example of creating a web app with [Stagehand](http://stagehand.pub/)
+and then running it with this server:
+
+```
+$ stagehand web-angular
+$ pub get
+$ pub build
+$ dhttpd --path build/web/  # Serves app at http://localhost:8080
+```
+
+
 ## Configure
 
 * `--port` - Set the port. Defaults to 8080.
-* `--path` - Set the path to server. Defaults to cwd.
+* `--path` - Set the path to serve. Defaults to cwd.
 * `--host` - Hostname to listen on. Defaults to localhost.
 * `--allow-origin` - Value for the 'Access-Control-Allow-Origin' header.
 
