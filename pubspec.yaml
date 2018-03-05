@@ -7,11 +7,12 @@ authors:
 - Kevin Moore <github@j832.com>
 
 environment:
-  sdk: ">=1.6.0 <2.0.0"
+  sdk: ">=1.8.0 <2.0.0"
 
 dependencies:
   args: ">=0.12.0+1 <2.0.0"
-  shelf_static: ">=0.2.0 <0.3.0"
+  shelf: ^0.7.2
+  shelf_static: ^0.2.0
 
 executables:
   dhttpd:
