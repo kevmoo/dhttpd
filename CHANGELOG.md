@@ -1,6 +1,7 @@
-# CHANGELOG
-
 ## 2.0.0
+
+* Removed `allow-origin` flag. In reality, this flag never worked because the
+  `shelf` pipeline was not configured correctly.
 
 * Source moved to [github.com/kevmoo/dhttpd](https://github.com/kevmoo/dhttpd).
 

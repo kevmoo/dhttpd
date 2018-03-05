@@ -15,9 +15,6 @@ main(List<String> args) async {
         defaultsTo: DEFAULT_HOST.toString(),
         valueHelp: 'host',
         help: 'The hostname to listen on (defaults to "localhost").')
-    ..addOption('allow-origin',
-        valueHelp: 'allow-origin',
-        help: "The value for the 'Access-Control-Allow-Origin' header.")
     ..addFlag('help', abbr: 'h', negatable: false, help: 'Displays the help.');
 
   var results = argParser.parse(args);
@@ -37,11 +34,7 @@ main(List<String> args) async {
   String path =
       results['path'] != null ? results['path'] : Directory.current.path;
 
-  await Dhttpd.start(
-      path: path,
-      port: port,
-      allowOrigin: results['allow-origin'],
-      address: hostname);
+  await Dhttpd.start(path: path, port: port, address: hostname);
 
   print('Server started on port $port');
 }

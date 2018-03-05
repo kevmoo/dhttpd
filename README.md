@@ -43,7 +43,6 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 * `--port` - Set the port. Defaults to 8080.
 * `--path` - Set the path to serve. Defaults to cwd.
 * `--host` - Hostname to listen on. Defaults to localhost.
-* `--allow-origin` - Value for the 'Access-Control-Allow-Origin' header.
 
 ## TODO
 
