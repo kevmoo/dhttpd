@@ -1,6 +1,6 @@
 name: dhttpd
 description: A static file HTTP server for easy directory serving.
-version: 2.0.0-dev
+version: 2.0.0
 homepage: https://github.com/kevmoo/dhttpd
 authors:
 - Seth Ladd <sethladd@gmail.com>
