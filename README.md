@@ -1,5 +1,6 @@
 dhttpd
 ==================
+[![Build Status](https://travis-ci.org/kevmoo/dhttpd.svg?branch=master)](https://travis-ci.org/kevmoo/dhttpd)
 
 A simple HTTP server that can serve up any directory,
 built with Dart.
