@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:args/args.dart';
 import 'package:dhttpd/dhttpd.dart';
 
@@ -21,18 +22,21 @@ main(List<String> args) async {
 
   if (results['help']) {
     print(argParser.usage);
-    exit(1);
+    return;
   }
 
-  var port = int.parse(results['port'], onError: (source) {
-    stderr.writeln('port must be a number');
-    exit(1);
-  });
+  var port = int.parse(results['port'], onError: (source) => null);
+
+  if (port == null) {
+    stderr.writeln('`port` must be a number.\n');
+    print(argParser.usage);
+    exitCode = 64; // bad usage
+    return;
+  }
 
   var hostname = results['host'];
 
-  String path =
-      results['path'] != null ? results['path'] : Directory.current.path;
+  var path = results['path'] as String ?? Directory.current.path;
 
   await Dhttpd.start(path: path, port: port, address: hostname);
 
