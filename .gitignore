@@ -1,7 +1,5 @@
-.idea
-packages
-.DS_Store
-pubspec.lock
-.project
-.settings/
+# https://www.dartlang.org/guides/libraries/private-files
+.dart_tool/
 .packages
+.pub
+pubspec.lock
