@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.0
+
+* Source moved to [github.com/kevmoo/dhttpd](https://github.com/kevmoo/dhttpd).
+
 ## 1.0.0
 
 * No change in functionality, just version and doc tweaks.

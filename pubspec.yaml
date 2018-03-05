@@ -1,17 +1,18 @@
 name: dhttpd
 description: A static file HTTP server for easy directory serving.
-version: 1.0.0
-homepage: https://github.com/sethladd/dhttpd
+version: 1.0.1-dev
+homepage: https://github.com/kevmoo/dhttpd
 authors:
 - Seth Ladd <sethladd@gmail.com>
+- Kevin Moore <github@j832.com>
 
 environment:
   sdk: ">=1.6.0 <2.0.0"
 
 dependencies:
-  shelf_static: ">=0.2.0 <0.3.0"
+  args: ">=0.12.0+1 <2.0.0"
   shelf_cors: ">=0.2.0 <0.3.0"
-  args: ">=0.12.0+1 <0.14.0"
+  shelf_static: ">=0.2.0 <0.3.0"
 
 executables:
   dhttpd:
