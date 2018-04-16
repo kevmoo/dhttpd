@@ -4,7 +4,7 @@ dart:
   - dev
 
 dart_task:
-  #- test: --platform vm,chrome
+  - test:
   - dartfmt:
   - dartanalyzer: --fatal-infos --fatal-warnings .
 
