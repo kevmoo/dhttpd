@@ -1,3 +1,7 @@
+## 2.0.1
+
+* Require at least Dart SDK `2.0.0-dev.48`.
+
 ## 2.0.0
 
 * Removed `allow-origin` flag. In reality, this flag never worked because the

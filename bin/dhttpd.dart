@@ -25,7 +25,7 @@ main(List<String> args) async {
     return;
   }
 
-  var port = int.parse(results['port'], onError: (source) => null);
+  var port = int.tryParse(results['port']);
 
   if (port == null) {
     stderr.writeln('`port` must be a number.\n');
