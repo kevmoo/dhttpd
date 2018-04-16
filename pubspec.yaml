@@ -14,5 +14,9 @@ dependencies:
   shelf: ^0.7.2
   shelf_static: ^0.2.0
 
+dev_dependencies:
+  test: ^0.12.34
+  test_process: ^1.0.1
+
 executables:
   dhttpd:

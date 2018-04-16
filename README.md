@@ -38,8 +38,15 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 
 ## Configure
 
-* `--port` - Set the port. Defaults to 8080.
-* `--path` - Set the path to serve. Defaults to cwd.
-* `--host` - Hostname to listen on. Defaults to localhost.
+```console
+$ dhttpd --help
+-p, --port=<port>    The port to listen on.
+                     (defaults to "8080")
 
+    --path=<path>    The path to serve (defaults to the cwd).
+    --host=<host>    The hostname to listen on (defaults to "localhost").
+                     (defaults to "localhost")
+
+-h, --help           Displays the help.
+```
 [path]: https://www.dartlang.org/tools/pub/cmd/pub-global#running-a-script-from-your-path
