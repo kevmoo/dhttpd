@@ -17,13 +17,15 @@ class Options {
   final int port;
 
   @CliOption(
-      valueHelp: 'path', help: 'The path to serve (defaults to the cwd).')
+      valueHelp: 'path',
+      help: 'The path to serve.'
+          ' If not set, the curret directory is used.')
   final String path;
 
   @CliOption(
       defaultsTo: defaultHost,
       valueHelp: 'host',
-      help: 'The hostname to listen on (defaults to "localhost").')
+      help: 'The hostname to listen on.')
   final String host;
 
   @CliOption(abbr: 'h', negatable: false, help: 'Displays the help.')

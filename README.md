@@ -43,8 +43,8 @@ $ dhttpd --help
 -p, --port=<port>    The port to listen on.
                      (defaults to "8080")
 
-    --path=<path>    The path to serve (defaults to the cwd).
-    --host=<host>    The hostname to listen on (defaults to "localhost").
+    --path=<path>    The path to serve. If not set, the curret directory is used.
+    --host=<host>    The hostname to listen on.
                      (defaults to "localhost")
 
 -h, --help           Displays the help.

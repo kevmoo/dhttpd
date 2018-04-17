@@ -27,9 +27,10 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       valueHelp: 'port',
       defaultsTo: '8080')
   ..addOption('path',
-      help: 'The path to serve (defaults to the cwd).', valueHelp: 'path')
+      help: 'The path to serve. If not set, the curret directory is used.',
+      valueHelp: 'path')
   ..addOption('host',
-      help: 'The hostname to listen on (defaults to "localhost").',
+      help: 'The hostname to listen on.',
       valueHelp: 'host',
       defaultsTo: 'localhost')
   ..addFlag('help', abbr: 'h', help: 'Displays the help.', negatable: false);
