@@ -20,6 +20,19 @@ Future _readmeCheck(List<String> args) async {
   var expected = '```console\n\$ $command\n$output\n```';
 
   printOnFailure(expected);
+
+  expect(expected, r'''```console
+$ dhttpd --help
+-p, --port=<port>    The port to listen on.
+                     (defaults to "8080")
+
+    --path=<path>    The path to serve (defaults to the cwd).
+    --host=<host>    The hostname to listen on (defaults to "localhost").
+                     (defaults to "localhost")
+
+-h, --help           Displays the help.
+```''');
+
   expect(readme.readAsStringSync(), contains(expected));
 }
 
