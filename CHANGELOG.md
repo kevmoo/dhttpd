@@ -1,8 +1,7 @@
 ## 3.0.0
 
+* Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
 * Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library. 
-
-* Require at least Dart SDK `2.0.0-dev.48`.
 
 ## 2.0.0
 
