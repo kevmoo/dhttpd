@@ -20,7 +20,7 @@ class Dhttpd {
   String get urlBase => 'http://$host:$port/';
 
   static Future<Dhttpd> start(
-      {String path, int port: defaultPort, address: defaultHost}) async {
+      {String path, int port = defaultPort, address = defaultHost}) async {
     path ??= Directory.current.path;
 
     final pipeline = const Pipeline()

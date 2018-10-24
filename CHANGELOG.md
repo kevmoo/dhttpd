@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Updated a number of dependencies.
+
 ## 3.0.0
 
 * Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
