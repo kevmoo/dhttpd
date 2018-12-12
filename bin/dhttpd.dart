@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dhttpd/dhttpd.dart';
 import 'package:dhttpd/src/options.dart';
 
-main(List<String> args) async {
+void main(List<String> args) async {
   Options options;
   try {
     options = parseOptions(args);

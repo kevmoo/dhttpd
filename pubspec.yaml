@@ -1,10 +1,10 @@
 name: dhttpd
-version: 3.0.1
+version: 3.0.2-dev
 
 description: A static file HTTP server for easy directory serving.
 authors:
-- Seth Ladd <sethladd@gmail.com>
-- Kevin Moore <github@j832.com>
+  - Seth Ladd <sethladd@gmail.com>
+  - Kevin Moore <github@j832.com>
 homepage: https://github.com/kevmoo/dhttpd
 
 environment:
@@ -17,7 +17,7 @@ dependencies:
   shelf_static: ^0.2.0
 
 dev_dependencies:
-  build_cli: ^1.0.0
+  build_cli: ^1.2.1
   build_runner: ^1.0.0
   build_verify: ^1.0.0
   path: ^1.6.1

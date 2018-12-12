@@ -27,8 +27,8 @@ class Dhttpd {
         .addMiddleware(logRequests())
         .addHandler(createStaticHandler(path, defaultDocument: 'index.html'));
 
-    var server = await io.serve(pipeline, address, port);
-    return new Dhttpd._(server, path);
+    final server = await io.serve(pipeline, address, port);
+    return Dhttpd._(server, path);
   }
 
   Future destroy() => _server.close();

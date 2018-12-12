@@ -8,10 +8,10 @@ part of 'options.dart';
 
 T _$badNumberFormat<T extends num>(
         String source, String type, String argName) =>
-    throw new FormatException(
+    throw FormatException(
         'Cannot parse "$source" into `$type` for option "$argName".');
 
-Options _$parseOptionsResult(ArgResults result) => new Options(
+Options _$parseOptionsResult(ArgResults result) => Options(
     port: int.tryParse(result['port'] as String) ??
         _$badNumberFormat(result['port'] as String, 'int', 'port'),
     path: result['path'] as String,
@@ -33,9 +33,9 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       defaultsTo: 'localhost')
   ..addFlag('help', abbr: 'h', help: 'Displays the help.', negatable: false);
 
-final _$parserForOptions = _$populateOptionsParser(new ArgParser());
+final _$parserForOptions = _$populateOptionsParser(ArgParser());
 
 Options parseOptions(List<String> args) {
-  var result = _$parserForOptions.parse(args);
+  final result = _$parserForOptions.parse(args);
   return _$parseOptionsResult(result);
 }

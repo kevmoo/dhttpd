@@ -10,14 +10,14 @@ void main() {
 }
 
 Future _readmeCheck(List<String> args) async {
-  var process = await _runApp(args);
-  var output = (await process.stdoutStream().join('\n')).trim();
+  final process = await _runApp(args);
+  final output = (await process.stdoutStream().join('\n')).trim();
   await process.shouldExit(0);
 
-  var readme = new File('README.md');
+  final readme = File('README.md');
 
-  var command = (['dhttpd']..addAll(args)).join(' ');
-  var expected = '```console\n\$ $command\n$output\n```';
+  final command = (['dhttpd']..addAll(args)).join(' ');
+  final expected = '```console\n\$ $command\n$output\n```';
 
   printOnFailure(expected);
 
@@ -37,7 +37,7 @@ $ dhttpd --help
 }
 
 Future<TestProcess> _runApp(List<String> args, {String workingDirectory}) {
-  var fullArgs = ['bin/dhttpd.dart']..addAll(args);
+  final fullArgs = ['bin/dhttpd.dart']..addAll(args);
   return TestProcess.start(_dartPath, fullArgs,
       workingDirectory: workingDirectory);
 }
@@ -46,7 +46,7 @@ Future<TestProcess> _runApp(List<String> args, {String workingDirectory}) {
 final String _sdkDir = (() {
   // The Dart executable is in "/path/to/sdk/bin/dart", so two levels up is
   // "/path/to/sdk".
-  var aboveExecutable = p.dirname(p.dirname(Platform.resolvedExecutable));
+  final aboveExecutable = p.dirname(p.dirname(Platform.resolvedExecutable));
   assert(FileSystemEntity.isFileSync(p.join(aboveExecutable, 'version')));
   return aboveExecutable;
 })();
