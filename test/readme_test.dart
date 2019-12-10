@@ -16,7 +16,7 @@ Future _readmeCheck(List<String> args) async {
 
   final readme = File('README.md');
 
-  final command = (['dhttpd']..addAll(args)).join(' ');
+  final command = (['dhttpd', ...args]).join(' ');
   final expected = '```console\n\$ $command\n$output\n```';
 
   printOnFailure(expected);
@@ -37,7 +37,7 @@ $ dhttpd --help
 }
 
 Future<TestProcess> _runApp(List<String> args, {String workingDirectory}) {
-  final fullArgs = ['bin/dhttpd.dart']..addAll(args);
+  final fullArgs = ['bin/dhttpd.dart', ...args];
   return TestProcess.start(_dartPath, fullArgs,
       workingDirectory: workingDirectory);
 }
