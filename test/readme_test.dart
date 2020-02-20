@@ -16,7 +16,7 @@ Future _readmeCheck(List<String> args) async {
 
   final readme = File('README.md');
 
-  final command = (['dhttpd', ...args]).join(' ');
+  final command = ['dhttpd', ...args].join(' ');
   final expected = '```console\n\$ $command\n$output\n```';
 
   printOnFailure(expected);
