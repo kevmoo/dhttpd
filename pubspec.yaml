@@ -1,7 +1,7 @@
 name: dhttpd
 version: 3.0.2-dev
 
-description: A static file HTTP server for easy directory serving.
+description: A static HTTP file server for easy local hosting of a directory.
 homepage: https://github.com/kevmoo/dhttpd
 
 environment:
