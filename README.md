@@ -49,4 +49,4 @@ $ dhttpd --help
 
 -h, --help           Displays the help.
 ```
-[path]: https://www.dartlang.org/tools/pub/cmd/pub-global#running-a-script-from-your-path
+[path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path

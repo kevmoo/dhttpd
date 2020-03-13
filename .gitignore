@@ -1,4 +1,4 @@
-# https://www.dartlang.org/guides/libraries/private-files
+# https://dart.dev/guides/libraries/private-files
 .dart_tool/
 .packages
 .pub
