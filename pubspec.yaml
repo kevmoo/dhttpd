@@ -5,7 +5,7 @@ description: A static HTTP file server for easy local hosting of a directory.
 homepage: https://github.com/kevmoo/dhttpd
 
 environment:
-  sdk: '>=2.3.0 <3.0.0'
+  sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
   args: '>=0.12.0+1 <2.0.0'
