@@ -8,7 +8,7 @@ environment:
   sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
-  args: '>=0.12.0+1 <2.0.0'
+  args: ^1.6.0
   build_cli_annotations: ^1.0.0
   shelf: ^0.7.2
   shelf_static: ^0.2.0
