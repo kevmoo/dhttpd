@@ -42,11 +42,9 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 $ dhttpd --help
 -p, --port=<port>    The port to listen on.
                      (defaults to "8080")
-
     --path=<path>    The path to serve. If not set, the curret directory is used.
     --host=<host>    The hostname to listen on.
                      (defaults to "localhost")
-
 -h, --help           Displays the help.
 ```
 [path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path
