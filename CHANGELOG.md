@@ -1,6 +1,7 @@
-## 3.0.2-dev
+## 3.0.2
 
 - Update minimum Dart SDK to `2.6.0`.
+- Fix many lints affecting package score.
 
 ## 3.0.1
 
