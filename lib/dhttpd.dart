@@ -19,10 +19,20 @@ class Dhttpd {
 
   String get urlBase => 'http://$host:$port/';
 
+  /// [address] can either be a [String] or an
+  /// [InternetAddress]. If [address] is a [String], [start] will
+  /// perform a [InternetAddress.lookup] and use the first value in the
+  /// list. To listen on the loopback adapter, which will allow only
+  /// incoming connections from the local host, use the value
+  /// [InternetAddress.loopbackIPv4] or
+  /// [InternetAddress.loopbackIPv6]. To allow for incoming
+  /// connection from the network use either one of the values
+  /// [InternetAddress.anyIPv4] or [InternetAddress.anyIPv6] to
+  /// bind to all interfaces or the IP address of a specific interface.
   static Future<Dhttpd> start({
     String path,
     int port = defaultPort,
-    address = defaultHost,
+    Object address = defaultHost,
   }) async {
     path ??= Directory.current.path;
 
