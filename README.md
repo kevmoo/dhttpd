@@ -27,7 +27,7 @@ Otherwise you can use the `pub global` command.
 $ pub global run dhttpd
 ```
 
-Here's an example of creating a web app with [Stagehand](http://stagehand.pub/)
+Here's an example of creating a web app with [Stagehand](https://pub.dev/packages/stagehand)
 and then running it with this server:
 
 ```console
