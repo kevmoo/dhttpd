@@ -2,15 +2,15 @@ name: dhttpd
 version: 3.0.3-dev
 
 description: A static HTTP file server for easy local hosting of a directory.
-homepage: https://github.com/kevmoo/dhttpd
+repository: https://github.com/kevmoo/dhttpd
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.10.0 <3.0.0'
 
 dependencies:
-  args: ^1.6.0
+  args: '>=1.6.0 <3.0.0'
   build_cli_annotations: ^1.0.0
-  shelf: ^0.7.2
+  shelf: '>=0.7.2 <2.0.0'
   shelf_static: ^0.2.0
 
 dev_dependencies:
