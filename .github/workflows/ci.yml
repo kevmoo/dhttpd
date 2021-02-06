@@ -56,5 +56,5 @@ jobs:
       - id: install
         name: Install dependencies
         run: dart pub get
-      - run: dart test
+      - run: dart test --run-skipped
         if: always() && steps.install.outcome == 'success'
