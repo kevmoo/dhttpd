@@ -19,8 +19,8 @@ class Options {
   @CliOption(
       valueHelp: 'path',
       help: 'The path to serve.'
-          ' If not set, the curret directory is used.')
-  final String path;
+          ' If not set, the current directory is used.')
+  final String? path;
 
   @CliOption(
       defaultsTo: defaultHost,
@@ -31,5 +31,10 @@ class Options {
   @CliOption(abbr: 'h', negatable: false, help: 'Displays the help.')
   final bool help;
 
-  Options({this.port, this.path, this.host, this.help});
+  Options({
+    required this.port,
+    this.path,
+    required this.host,
+    required this.help,
+  });
 }

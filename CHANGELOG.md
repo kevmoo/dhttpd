@@ -1,6 +1,7 @@
-## 3.0.3-dev
+## 4.0.0
 
-- Update minimum Dart SDK to `2.7.0`.
+- Update minimum Dart SDK to `2.12.0`.
+- Enable null safety.
 
 ## 3.0.2
 

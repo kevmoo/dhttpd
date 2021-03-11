@@ -25,7 +25,7 @@ Future _readmeCheck(List<String> args) async {
 $ dhttpd --help
 -p, --port=<port>    The port to listen on.
                      (defaults to "8080")
-    --path=<path>    The path to serve. If not set, the curret directory is used.
+    --path=<path>    The path to serve. If not set, the current directory is used.
     --host=<host>    The hostname to listen on.
                      (defaults to "localhost")
 -h, --help           Displays the help.
@@ -34,7 +34,7 @@ $ dhttpd --help
   expect(readme.readAsStringSync(), contains(expected));
 }
 
-Future<TestProcess> _runApp(List<String> args, {String workingDirectory}) {
+Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) {
   final fullArgs = ['bin/dhttpd.dart', ...args];
   return TestProcess.start(_dartPath, fullArgs,
       workingDirectory: workingDirectory);
