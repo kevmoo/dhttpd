@@ -30,7 +30,7 @@ class Dhttpd {
   /// [InternetAddress.anyIPv4] or [InternetAddress.anyIPv6] to
   /// bind to all interfaces or the IP address of a specific interface.
   static Future<Dhttpd> start({
-    String path,
+    String? path,
     int port = defaultPort,
     Object address = defaultHost,
   }) async {

@@ -43,7 +43,7 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 $ dhttpd --help
 -p, --port=<port>    The port to listen on.
                      (defaults to "8080")
-    --path=<path>    The path to serve. If not set, the curret directory is used.
+    --path=<path>    The path to serve. If not set, the current directory is used.
     --host=<host>    The hostname to listen on.
                      (defaults to "localhost")
 -h, --help           Displays the help.

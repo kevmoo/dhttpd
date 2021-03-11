@@ -14,7 +14,7 @@ T _$badNumberFormat<T extends num>(
 Options _$parseOptionsResult(ArgResults result) => Options(
     port: int.tryParse(result['port'] as String) ??
         _$badNumberFormat(result['port'] as String, 'int', 'port'),
-    path: result['path'] as String,
+    path: result['path'] as String?,
     host: result['host'] as String,
     help: result['help'] as bool);
 
@@ -25,7 +25,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
       valueHelp: 'port',
       defaultsTo: '8080')
   ..addOption('path',
-      help: 'The path to serve. If not set, the curret directory is used.',
+      help: 'The path to serve. If not set, the current directory is used.',
       valueHelp: 'path')
   ..addOption('host',
       help: 'The hostname to listen on.',
