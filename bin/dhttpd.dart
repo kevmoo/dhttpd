@@ -20,7 +20,10 @@ Future<void> main(List<String> args) async {
   }
 
   await Dhttpd.start(
-      path: options.path, port: options.port, address: options.host);
+    path: options.path,
+    port: options.port,
+    address: options.host,
+  );
 
   print('Server started on port ${options.port}');
 }
