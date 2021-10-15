@@ -1,7 +1,7 @@
 [![Pub Package](https://img.shields.io/pub/v/dhttpd.svg)](https://pub.dev/packages/dhttpd)
 [![CI](https://github.com/kevmoo/dhttp/workflows/CI/badge.svg?branch=master)](https://github.com/kevmoo/dhttp/actions?query=workflow%3ACI+branch%3Amaster)
 
-A simple HTTP server that can serve up any directory, built with Dart.
+A simple HTTP(s) server that can serve up any directory, built with Dart.
 Inspired by `python -m SimpleHTTPServer`.
 
 ## Install
@@ -44,6 +44,12 @@ $ dhttpd --help
 -p, --port=<port>    The port to listen on.
                      (defaults to "8080")
     --path=<path>    The path to serve. If not set, the current directory is used.
+    --cert=<cert>    The certificate to use.
+                     If not set, https will not be used.
+                     See the dart documentation about SecurityContext.useCertificateChain for more.
+    --key=<key>      The key of the certificate to use.
+                     If not set, https will not be used.
+                     See the dart documentation about SecurityContext.usePrivateKey for more.
     --host=<host>    The hostname to listen on.
                      (defaults to "localhost")
 -h, --help           Displays the help.

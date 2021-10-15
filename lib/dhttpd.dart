@@ -29,10 +29,12 @@ class Dhttpd {
   /// connection from the network use either one of the values
   /// [InternetAddress.anyIPv4] or [InternetAddress.anyIPv6] to
   /// bind to all interfaces or the IP address of a specific interface.
+  /// If [securityContext] is non-null, a secure server will be started.
   static Future<Dhttpd> start({
     String? path,
     int port = defaultPort,
     Object address = defaultHost,
+    SecurityContext? securityContext,
   }) async {
     path ??= Directory.current.path;
 
@@ -40,7 +42,8 @@ class Dhttpd {
         .addMiddleware(logRequests())
         .addHandler(createStaticHandler(path, defaultDocument: 'index.html'));
 
-    final server = await io.serve(pipeline, address, port);
+    final server = await io.serve(pipeline, address, port,
+        securityContext: securityContext);
     return Dhttpd._(server, path);
   }
 

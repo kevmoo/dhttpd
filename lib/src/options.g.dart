@@ -15,6 +15,8 @@ Options _$parseOptionsResult(ArgResults result) => Options(
     port: int.tryParse(result['port'] as String) ??
         _$badNumberFormat(result['port'] as String, 'int', 'port'),
     path: result['path'] as String?,
+    cert: result['cert'] as String?,
+    key: result['key'] as String?,
     host: result['host'] as String,
     help: result['help'] as bool);
 
@@ -27,6 +29,14 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addOption('path',
       help: 'The path to serve. If not set, the current directory is used.',
       valueHelp: 'path')
+  ..addOption('cert',
+      help:
+          'The certificate to use.\r\nIf not set, https will not be used.\r\nSee the dart documentation about SecurityContext.useCertificateChain for more.',
+      valueHelp: 'cert')
+  ..addOption('key',
+      help:
+          'The key of the certificate to use.\r\nIf not set, https will not be used.\r\nSee the dart documentation about SecurityContext.usePrivateKey for more.',
+      valueHelp: 'key')
   ..addOption('host',
       help: 'The hostname to listen on.',
       valueHelp: 'host',

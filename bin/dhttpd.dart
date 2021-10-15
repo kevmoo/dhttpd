@@ -19,11 +19,23 @@ Future<void> main(List<String> args) async {
     return;
   }
 
+  SecurityContext? securityContext;
+  final cert = options.cert;
+  final key = options.key;
+  if (cert != null && key != null) {
+    print('Using certificate ${options.cert} with key ${options.key} for ssl');
+    securityContext = SecurityContext()
+      ..useCertificateChain(cert)
+      ..usePrivateKey(key);
+  } else {
+    print('Parameter cert/key not set, not using ssl');
+  }
+
   await Dhttpd.start(
-    path: options.path,
-    port: options.port,
-    address: options.host,
-  );
+      path: options.path,
+      port: options.port,
+      address: options.host,
+      securityContext: securityContext);
 
   print('Server started on port ${options.port}');
 }
