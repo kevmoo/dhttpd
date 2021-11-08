@@ -6,10 +6,10 @@ Inspired by `python -m SimpleHTTPServer`.
 
 ## Install
 
-Use the `pub global` command to install this into your system.
+Use the `dart pub global` command to install this into your system.
 
 ```console
-$ pub global activate dhttpd
+$ dart pub global activate dhttpd
 ```
 
 ## Use
@@ -21,20 +21,27 @@ local directory.
 $ dhttpd
 ```
 
-Otherwise you can use the `pub global` command.
+Otherwise you can use the `dart pub global` command.
 
 ```console
-$ pub global run dhttpd
+$ dart pub global run dhttpd
 ```
 
-Here's an example of creating a web app with [Stagehand](https://pub.dev/packages/stagehand)
+Activate [webdev](https://dart.dev/tools/webdev) to enable dart web application builds.
+
+```console
+$ dart pub global activate webdev
+```
+
+Here's an example of creating a web app
 and then running it with this server:
 
 ```console
-$ stagehand web-angular
-$ pub get
-$ pub build
-$ dhttpd --path build/web/  # Serves app at http://localhost:8080
+$ dart create -t web-simple web-app
+$ cd web-app
+$ dart pub get
+$ webdev build
+$ dhttpd --path build/  # Serves app at http://localhost:8080
 ```
 
 ## Configure
@@ -48,4 +55,5 @@ $ dhttpd --help
                      (defaults to "localhost")
 -h, --help           Displays the help.
 ```
+
 [path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path
