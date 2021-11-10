@@ -27,12 +27,6 @@ Otherwise you can use the `dart pub global` command.
 $ dart pub global run dhttpd
 ```
 
-Activate [webdev](https://dart.dev/tools/webdev) to enable dart web application builds.
-
-```console
-$ dart pub global activate webdev
-```
-
 Here's an example of creating a web app
 and then running it with this server:
 
@@ -40,8 +34,8 @@ and then running it with this server:
 $ dart create -t web-simple web-app
 $ cd web-app
 $ dart pub get
-$ webdev build
-$ dhttpd --path build/  # Serves app at http://localhost:8080
+$ dart run build_runner build -o build
+$ dhttpd --path build/web/  # Serves app at http://localhost:8080
 ```
 
 ## Configure
