@@ -1,5 +1,5 @@
 [![Pub Package](https://img.shields.io/pub/v/dhttpd.svg)](https://pub.dev/packages/dhttpd)
-[![CI](https://github.com/kevmoo/dhttp/workflows/CI/badge.svg?branch=master)](https://github.com/kevmoo/dhttp/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/kevmoo/dhttpd/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kevmoo/dhttpd/actions/workflows/ci.yml)
 
 A simple HTTP server that can serve up any directory, built with Dart.
 Inspired by `python -m SimpleHTTPServer`.
