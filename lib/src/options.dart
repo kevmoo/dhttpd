@@ -31,10 +31,14 @@ class Options {
   @CliOption(abbr: 'h', negatable: false, help: 'Displays the help.')
   final bool help;
 
+  @CliOption(negatable: false, help: 'Prints the version of dhttpd.')
+  final bool version;
+
   Options({
     required this.port,
     this.path,
     required this.host,
     required this.help,
+    required this.version,
   });
 }

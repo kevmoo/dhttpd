@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dhttpd/dhttpd.dart';
 import 'package:dhttpd/src/options.dart';
+import 'package:dhttpd/src/version.dart';
 
 Future<void> main(List<String> args) async {
   Options options;
@@ -16,6 +17,11 @@ Future<void> main(List<String> args) async {
 
   if (options.help) {
     print(usage);
+    return;
+  }
+
+  if (options.version) {
+    print(packageVersion);
     return;
   }
 
