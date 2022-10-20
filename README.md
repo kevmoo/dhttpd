@@ -48,6 +48,7 @@ $ dhttpd --help
     --host=<host>    The hostname to listen on.
                      (defaults to "localhost")
 -h, --help           Displays the help.
+    --version        Prints the version of dhttpd.
 ```
 
 [path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path

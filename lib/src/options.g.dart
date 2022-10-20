@@ -25,6 +25,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
       path: result['path'] as String?,
       host: result['host'] as String,
       help: result['help'] as bool,
+      version: result['version'] as bool,
     );
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
@@ -50,6 +51,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'help',
     abbr: 'h',
     help: 'Displays the help.',
+    negatable: false,
+  )
+  ..addFlag(
+    'version',
+    help: 'Prints the version of dhttpd.',
     negatable: false,
   );
 
