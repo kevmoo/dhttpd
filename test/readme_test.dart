@@ -9,7 +9,7 @@ void main() {
   test('--help', () => _readmeCheck(['--help']));
 }
 
-Future _readmeCheck(List<String> args) async {
+Future<void> _readmeCheck(List<String> args) async {
   final process = await _runApp(args);
   final output = (await process.stdoutStream().join('\n')).trim();
   await process.shouldExit(0);
