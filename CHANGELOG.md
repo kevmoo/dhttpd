@@ -1,3 +1,7 @@
+## 4.0.2-dev
+
+- Update minimum Dart SDK to `2.18.0`.
+
 ## 4.0.1
 
 - Improve README

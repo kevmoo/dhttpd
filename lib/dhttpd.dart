@@ -44,5 +44,5 @@ class Dhttpd {
     return Dhttpd._(server, path);
   }
 
-  Future destroy() => _server.close();
+  Future<void> destroy() => _server.close();
 }
