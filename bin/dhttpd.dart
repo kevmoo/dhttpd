@@ -19,11 +19,11 @@ Future<void> main(List<String> args) async {
     return;
   }
 
-  await Dhttpd.start(
+  final dhttpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
     address: options.host,
   );
 
-  print('Server started on port ${options.port}');
+  print('Server started on port ${dhttpd.urlBase}');
 }
