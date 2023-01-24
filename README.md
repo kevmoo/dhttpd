@@ -32,8 +32,8 @@ Here's an example of creating a web app
 and then running it with this server:
 
 ```console
-$ dart create -t web-simple web-app
-$ cd web-app
+$ dart create -t web web_app
+$ cd web_app
 $ dart pub get
 $ dart run build_runner build -o build
 $ dhttpd --path build/web/  # Serves app at http://localhost:8080
