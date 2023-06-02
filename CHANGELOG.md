@@ -1,6 +1,6 @@
-## 4.0.2-dev
+## 4.0.2-wip
 
-- Update minimum Dart SDK to `2.18.0`.
+- Update minimum Dart SDK to `3.0.0`.
 
 ## 4.0.1
 
