@@ -7,6 +7,7 @@ import 'package:test_process/test_process.dart';
 
 void main() {
   test('--help', () => _readmeCheck(['--help']));
+  test('--port=8000', _outputCheck);
 }
 
 Future<void> _readmeCheck(List<String> args) async {
@@ -36,6 +37,14 @@ $ dhttpd --help
 ```''');
 
   expect(readme.readAsStringSync(), contains(expected));
+}
+
+Future<void> _outputCheck() async {
+  final process = await _runApp(['--port=8000']);
+  final output = (await process.stdout.next).trim();
+  await process.kill();
+
+  expect(output, equals('Server started at http://localhost:8000.'));
 }
 
 Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) {
