@@ -43,8 +43,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   )
   ..addOption(
     'headers',
-    help:
-        'HTTP headers to serve on each request. Format: header1=value;header2=value',
+    help: 'HTTP headers to apply to each response. header=value;header2=value',
     valueHelp: 'headers',
   )
   ..addOption(

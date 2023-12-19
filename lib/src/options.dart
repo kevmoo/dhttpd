@@ -25,7 +25,7 @@ class Options {
   @CliOption(
       valueHelp: 'headers',
       help:
-          'HTTP headers to serve on each request. Format: header1=value;header2=value')
+          'HTTP headers to apply to each response. header=value;header2=value')
   final String? headers;
 
   @CliOption(
