@@ -22,8 +22,21 @@ Future<void> main(List<String> args) async {
   await Dhttpd.start(
     path: options.path,
     port: options.port,
+    headers:
+        options.headers != null ? parseKeyValuePairs(options.headers!) : null,
     address: options.host,
   );
 
   print('Server started on port ${options.port}');
+}
+
+Map<String, String> parseKeyValuePairs(String str) {
+  final regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
+  final map = <String, String>{};
+  for (final match in regex.allMatches(str)) {
+    final key = match.group(1)!;
+    final value = match.group(2)!;
+    map[key] = value;
+  }
+  return map;
 }
