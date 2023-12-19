@@ -23,14 +23,14 @@ Future<void> main(List<String> args) async {
     path: options.path,
     port: options.port,
     headers:
-        options.headers != null ? parseKeyValuePairs(options.headers!) : null,
+        options.headers != null ? _parseKeyValuePairs(options.headers!) : null,
     address: options.host,
   );
 
   print('Server started on port ${options.port}');
 }
 
-Map<String, String> parseKeyValuePairs(String str) {
+Map<String, String> _parseKeyValuePairs(String str) {
   final regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
   final map = <String, String>{};
   for (final match in regex.allMatches(str)) {

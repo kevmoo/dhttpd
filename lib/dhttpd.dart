@@ -39,7 +39,7 @@ class Dhttpd {
 
     final pipeline = const Pipeline()
         .addMiddleware(logRequests())
-        .addMiddleware(headersMiddleware(headers))
+        .addMiddleware(_headersMiddleware(headers))
         .addHandler(createStaticHandler(path, defaultDocument: 'index.html'));
 
     final server = await io.serve(pipeline, address, port);
@@ -49,7 +49,7 @@ class Dhttpd {
   Future<void> destroy() => _server.close();
 }
 
-Middleware headersMiddleware(Map<String, String>? headers) =>
+Middleware _headersMiddleware(Map<String, String>? headers) =>
     (Handler innerHandler) => (Request request) async {
           final response = await innerHandler(request);
           final responseHeaders = Map<String, String>.from(response.headers);
