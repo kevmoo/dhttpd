@@ -33,10 +33,7 @@ Future<void> main(List<String> args) async {
 Map<String, String> _parseKeyValuePairs(String str) {
   final regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
   final map = <String, String>{};
-  for (final match in regex.allMatches(str)) {
-    final key = match.group(1)!;
-    final value = match.group(2)!;
-    map[key] = value;
-  }
-  return map;
+  return <String, String>{
+    for (var match in regex.allMatches(str)) match.group(1)!: match.group(2)!,
+  };
 }
