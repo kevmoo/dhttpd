@@ -1,5 +1,5 @@
 name: dhttpd
-version: 4.0.2-wip
+version: 4.1.0
 
 description: A static HTTP file server for easy local hosting of a directory.
 repository: https://github.com/kevmoo/dhttpd

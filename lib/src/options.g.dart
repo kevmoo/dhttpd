@@ -23,6 +23,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
             'port',
           ),
       path: result['path'] as String?,
+      headers: result['headers'] as String?,
       host: result['host'] as String,
       help: result['help'] as bool,
     );
@@ -39,6 +40,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'path',
     help: 'The path to serve. If not set, the current directory is used.',
     valueHelp: 'path',
+  )
+  ..addOption(
+    'headers',
+    help: 'HTTP headers to apply to each response. header=value;header2=value',
+    valueHelp: 'headers',
   )
   ..addOption(
     'host',

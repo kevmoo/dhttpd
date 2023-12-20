@@ -1,5 +1,7 @@
-## 4.0.2-wip
+## 4.1.0
 
+- Add "headers" option to add additional response headers.
+  For example: `--headers="header1=value;header2=value;"`
 - Update minimum Dart SDK to `3.0.0`.
 
 ## 4.0.1

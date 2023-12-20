@@ -23,6 +23,12 @@ class Options {
   final String? path;
 
   @CliOption(
+      valueHelp: 'headers',
+      help:
+          'HTTP headers to apply to each response. header=value;header2=value')
+  final String? headers;
+
+  @CliOption(
       defaultsTo: defaultHost,
       valueHelp: 'host',
       help: 'The hostname to listen on.')
@@ -34,6 +40,7 @@ class Options {
   Options({
     required this.port,
     this.path,
+    this.headers,
     required this.host,
     required this.help,
   });

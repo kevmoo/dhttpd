@@ -22,8 +22,17 @@ Future<void> main(List<String> args) async {
   await Dhttpd.start(
     path: options.path,
     port: options.port,
+    headers:
+        options.headers != null ? _parseKeyValuePairs(options.headers!) : null,
     address: options.host,
   );
 
   print('Server started on port ${options.port}');
 }
+
+Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
+      for (var match in _regex.allMatches(str))
+        match.group(1)!: match.group(2)!,
+    };
+
+final _regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
