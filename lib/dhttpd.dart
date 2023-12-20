@@ -58,6 +58,5 @@ Middleware _headersMiddleware(Map<String, String>? headers) =>
               responseHeaders[entry.key] = entry.value;
             }
           }
-          final newResponse = response.change(headers: responseHeaders);
-          return newResponse;
+          return response.change(headers: responseHeaders);
         };
