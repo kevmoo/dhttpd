@@ -25,9 +25,13 @@ Future<void> main(List<String> args) async {
     headers:
         options.headers != null ? _parseKeyValuePairs(options.headers!) : null,
     address: options.host,
+    sslCert: options.sslcert,
+    sslKey: options.sslkey,
+    sslPassword: options.sslkeypassword,
   );
 
-  print('Server started on port ${options.port}');
+  print(
+      'Server HTTP${Dhttpd.isSSL ? 'S' : ''} started on port ${options.port}');
 }
 
 Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
