@@ -10,9 +10,9 @@ import 'src/options.dart';
 class Dhttpd {
   final HttpServer _server;
   final String path;
-  static bool _ssl = false;
+  final SecurityContext? _securityContext;
 
-  Dhttpd._(this._server, this.path);
+  Dhttpd._(this._server, this.path, this._securityContext);
 
   String get host => _server.address.host;
 
@@ -20,7 +20,7 @@ class Dhttpd {
 
   String get urlBase => 'http://$host:$port/';
 
-  static bool get isSSL => _ssl;
+  bool get isSSL => _securityContext != null;
 
   /// [address] can either be a [String] or an
   /// [InternetAddress]. If [address] is a [String], [start] will
@@ -49,9 +49,6 @@ class Dhttpd {
         ..useCertificateChain(sslCert)
         ..usePrivateKey(sslKey, password: sslPassword);
     }
-    if (securityContext != null) {
-      _ssl = true;
-    }
 
     final pipeline = const Pipeline()
         .addMiddleware(logRequests())
@@ -60,7 +57,7 @@ class Dhttpd {
 
     final server = await io.serve(pipeline, address, port,
         securityContext: securityContext);
-    return Dhttpd._(server, path);
+    return Dhttpd._(server, path, securityContext);
   }
 
   Future<void> destroy() => _server.close();

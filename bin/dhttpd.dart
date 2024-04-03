@@ -19,7 +19,7 @@ Future<void> main(List<String> args) async {
     return;
   }
 
-  await Dhttpd.start(
+  final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
     headers:
@@ -31,7 +31,7 @@ Future<void> main(List<String> args) async {
   );
 
   print(
-      'Server HTTP${Dhttpd.isSSL ? 'S' : ''} started on port ${options.port}');
+      'Server HTTP${httpd.isSSL ? 'S' : ''} started on port ${options.port}');
 }
 
 Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
