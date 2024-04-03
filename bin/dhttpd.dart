@@ -30,8 +30,7 @@ Future<void> main(List<String> args) async {
     sslPassword: options.sslkeypassword,
   );
 
-  print(
-      'Server HTTP${httpd.isSSL ? 'S' : ''} started on port ${options.port}');
+  print('Server HTTP${httpd.isSSL ? 'S' : ''} started on port ${options.port}');
 }
 
 Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
