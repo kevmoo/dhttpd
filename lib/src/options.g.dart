@@ -57,20 +57,24 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
   )
   ..addOption(
     'sslcert',
-    help:
-        'The SSL certificate to use.\r\nIf set along with sslkey, https will be used.\r\nSee the dart documentation about SecurityContext.useCertificateChain for more.',
+    help: 'The SSL certificate to use.\r\nIf set along with sslkey, '
+        'https will be used.\r\nSee the dart documentation about '
+        'SecurityContext.useCertificateChain for more.',
     valueHelp: 'sslcert',
   )
   ..addOption(
     'sslkey',
     help:
-        'The key of the SSL certificate to use.\r\nIf set along with sslcert, https will be used.\r\nSee the dart documentation about SecurityContext.usePrivateKey for more.',
+        'The key of the SSL certificate to use.\r\nIf set along with sslcert, '
+        'https will be used.\r\nSee the dart documentation about '
+        'SecurityContext.usePrivateKey for more.',
     valueHelp: 'sslkey',
   )
   ..addOption(
     'sslkeypassword',
-    help:
-        'The password for the key of the SSL certificate to use.\r\nRequired if the ssl key being used has a password set.\r\nSee the dart documentation about SecurityContext.usePrivateKey for more.',
+    help: 'The password for the key of the SSL certificate to use.\r\nRequired '
+        'if the ssl key being used has a password set.\r\nSee the dart '
+        'documentation about SecurityContext.usePrivateKey for more.',
     valueHelp: 'sslkeypassword',
   )
   ..addFlag(

@@ -51,7 +51,7 @@ class Dhttpd {
     }
     if (securityContext != null) {
       _ssl = true;
-    }    
+    }
 
     final pipeline = const Pipeline()
         .addMiddleware(logRequests())
