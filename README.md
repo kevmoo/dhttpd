@@ -2,7 +2,7 @@
 [![CI](https://github.com/kevmoo/dhttpd/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kevmoo/dhttpd/actions/workflows/ci.yml)
 [![package publisher](https://img.shields.io/pub/publisher/dhttpd.svg)](https://pub.dev/packages/dhttpd/publisher)
 
-A simple HTTP(S) server that can serve up any directory, built with Dart.
+A simple HTTP server that can serve up any directory, built with Dart.
 Inspired by `python -m SimpleHTTPServer`.
 
 ## Install
@@ -41,12 +41,14 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 
 ### HTTPS
 
-If you want to use HTTPS you will need to pass in the path of the ssl certificate and the ssl key file as well as the password string, if a password is set on the key:
+If you want to use HTTPS you will need to pass in the path of the SSL certificate and the SSL key file as well as the password string, if a password is set on the key, for example:
 
 ```
 $ dart bin/dhttpd.dart --sslcert=sample/server_chain.pem --sslkey=sample/server_key.pem --sslkeypassword=dartdart
 Server HTTPS started on port 8080
 ```
+
+See the Dart documentation of [SecurityContext.usePrivateKey](https://api.dart.dev/stable/3.3.3/dart-io/SecurityContext/usePrivateKeyBytes.html) for more details.
 
 ## Configure
 
@@ -58,15 +60,9 @@ $ dhttpd --help
     --headers=<headers>                  HTTP headers to apply to each response. header=value;header2=value
     --host=<host>                        The hostname to listen on.
                                          (defaults to "localhost")
-    --sslcert=<sslcert>                  The SSL certificate to use.
-                                         If set along with sslkey, https will be used.
-                                         See the dart documentation about SecurityContext.useCertificateChain for more.
-    --sslkey=<sslkey>                    The key of the SSL certificate to use.
-                                         If set along with sslcert, https will be used.
-                                         See the dart documentation about SecurityContext.usePrivateKey for more.
+    --sslcert=<sslcert>                  The SSL certificate to use. Also requires sslkey
+    --sslkey=<sslkey>                    The key of the SSL certificate to use. Also requires sslcert
     --sslkeypassword=<sslkeypassword>    The password for the key of the SSL certificate to use.
-                                         Required if the ssl key being used has a password set.
-                                         See the dart documentation about SecurityContext.usePrivateKey for more.
 -h, --help                               Displays the help.
 ```
 
