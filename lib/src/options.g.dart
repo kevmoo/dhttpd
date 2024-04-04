@@ -25,6 +25,9 @@ Options _$parseOptionsResult(ArgResults result) => Options(
       path: result['path'] as String?,
       headers: result['headers'] as String?,
       host: result['host'] as String,
+      sslcert: result['sslcert'] as String?,
+      sslkey: result['sslkey'] as String?,
+      sslkeypassword: result['sslkeypassword'] as String?,
       help: result['help'] as bool,
     );
 
@@ -51,6 +54,21 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     help: 'The hostname to listen on.',
     valueHelp: 'host',
     defaultsTo: 'localhost',
+  )
+  ..addOption(
+    'sslcert',
+    help: 'The SSL certificate to use. Also requires sslkey',
+    valueHelp: 'sslcert',
+  )
+  ..addOption(
+    'sslkey',
+    help: 'The key of the SSL certificate to use. Also requires sslcert',
+    valueHelp: 'sslkey',
+  )
+  ..addOption(
+    'sslkeypassword',
+    help: 'The password for the key of the SSL certificate to use.',
+    valueHelp: 'sslkeypassword',
   )
   ..addFlag(
     'help',

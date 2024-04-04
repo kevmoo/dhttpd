@@ -34,6 +34,21 @@ class Options {
       help: 'The hostname to listen on.')
   final String host;
 
+  @CliOption(
+      valueHelp: 'sslcert',
+      help: 'The SSL certificate to use. Also requires sslkey')
+  final String? sslcert;
+
+  @CliOption(
+      valueHelp: 'sslkey',
+      help: 'The key of the SSL certificate to use. Also requires sslcert')
+  final String? sslkey;
+
+  @CliOption(
+      valueHelp: 'sslkeypassword',
+      help: 'The password for the key of the SSL certificate to use.')
+  final String? sslkeypassword;
+
   @CliOption(abbr: 'h', negatable: false, help: 'Displays the help.')
   final bool help;
 
@@ -42,6 +57,9 @@ class Options {
     this.path,
     this.headers,
     required this.host,
+    this.sslcert,
+    this.sslkey,
+    this.sslkeypassword,
     required this.help,
   });
 }

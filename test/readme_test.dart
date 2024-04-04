@@ -23,13 +23,16 @@ Future<void> _readmeCheck(List<String> args) async {
 
   expect(expected, r'''```console
 $ dhttpd --help
--p, --port=<port>          The port to listen on.
-                           (defaults to "8080")
-    --path=<path>          The path to serve. If not set, the current directory is used.
-    --headers=<headers>    HTTP headers to apply to each response. header=value;header2=value
-    --host=<host>          The hostname to listen on.
-                           (defaults to "localhost")
--h, --help                 Displays the help.
+-p, --port=<port>                        The port to listen on.
+                                         (defaults to "8080")
+    --path=<path>                        The path to serve. If not set, the current directory is used.
+    --headers=<headers>                  HTTP headers to apply to each response. header=value;header2=value
+    --host=<host>                        The hostname to listen on.
+                                         (defaults to "localhost")
+    --sslcert=<sslcert>                  The SSL certificate to use. Also requires sslkey
+    --sslkey=<sslkey>                    The key of the SSL certificate to use. Also requires sslcert
+    --sslkeypassword=<sslkeypassword>    The password for the key of the SSL certificate to use.
+-h, --help                               Displays the help.
 ```''');
 
   expect(readme.readAsStringSync(), contains(expected));
