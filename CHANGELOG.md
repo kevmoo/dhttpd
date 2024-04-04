@@ -1,3 +1,8 @@
+## 4.2.0-wip
+
+- Added support for `https`.
+- Update minimum Dart SDK to `3.2.0`.
+
 ## 4.1.0
 
 - Add "headers" option to add additional response headers.
