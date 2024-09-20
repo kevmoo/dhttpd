@@ -38,4 +38,4 @@ Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
         match.group(1)!: match.group(2)!,
     };
 
-final _regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
+final _regex = RegExp(r'([\w-]+)=(.|[^;]+)(;|$)');
