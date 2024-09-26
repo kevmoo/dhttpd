@@ -1,0 +1,14 @@
+# This is a comment
+/*
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Opener-Policy: same-origin
+  Cache-Control: max-age=0
+
+/secure/page
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+
+/public/*.html
+  Access-Control-Allow-Origin: *
+  cache-control: must-revalidate
