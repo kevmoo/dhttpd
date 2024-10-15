@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:dhttpd/dhttpd.dart';
+import 'package:dhttpd/src/headers.dart';
+import 'package:dhttpd/src/headers_parser.dart';
 import 'package:dhttpd/src/options.dart';
 
 Future<void> main(List<String> args) async {
@@ -22,8 +24,7 @@ Future<void> main(List<String> args) async {
   final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
-    headers:
-        options.headers != null ? _parseKeyValuePairs(options.headers!) : null,
+    headers: _parseHeaders(options.headers, options.headersfile),
     address: options.host,
     sslCert: options.sslcert,
     sslKey: options.sslkey,
@@ -33,9 +34,9 @@ Future<void> main(List<String> args) async {
   print('Server HTTP${httpd.isSSL ? 'S' : ''} started on port ${options.port}');
 }
 
-Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
-      for (var match in _regex.allMatches(str))
-        match.group(1)!: match.group(2)!,
-    };
-
-final _regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
+HeaderRuleSet _parseHeaders(String? headers, String? headersfile) {
+  final rules = <HeaderRule>[];
+  if (headers != null) rules.add(HeadersParser.parseString(headers));
+  if (headersfile != null) rules.addAll(HeadersParser.parseFile(headersfile));
+  return HeaderRuleSet(rules);
+}

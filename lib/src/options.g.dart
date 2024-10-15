@@ -24,6 +24,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
           ),
       path: result['path'] as String?,
       headers: result['headers'] as String?,
+      headersfile: result['headersfile'] as String?,
       host: result['host'] as String,
       sslcert: result['sslcert'] as String?,
       sslkey: result['sslkey'] as String?,
@@ -48,6 +49,11 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     'headers',
     help: 'HTTP headers to apply to each response. header=value;header2=value',
     valueHelp: 'headers',
+  )
+  ..addOption(
+    'headersfile',
+    help: 'File with HTTP header rules to apply to each response.',
+    valueHelp: 'headersfile',
   )
   ..addOption(
     'host',

@@ -2,6 +2,8 @@
 
 - Added support for `https`.
 - Update minimum Dart SDK to `3.2.0`.
+- Added `--headersfile` option to parse file-specific response headers from a file.
+- Changed `--headers` option to support additional characters.
 
 ## 4.1.0
 
@@ -30,7 +32,7 @@
 ## 3.0.0
 
 * Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
-* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library. 
+* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library.
 
 ## 2.0.0
 

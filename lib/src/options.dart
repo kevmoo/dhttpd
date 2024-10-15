@@ -29,6 +29,12 @@ class Options {
   final String? headers;
 
   @CliOption(
+      valueHelp: 'headersfile',
+      help:
+          'File with HTTP header rules to apply to each response.')
+  final String? headersfile;
+
+  @CliOption(
       defaultsTo: defaultHost,
       valueHelp: 'host',
       help: 'The hostname to listen on.')
@@ -56,6 +62,7 @@ class Options {
     required this.port,
     this.path,
     this.headers,
+    this.headersfile,
     required this.host,
     this.sslcert,
     this.sslkey,
