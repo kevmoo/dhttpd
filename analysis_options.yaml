@@ -11,6 +11,7 @@ linter:
   rules:
     - avoid_private_typedef_functions
     - avoid_redundant_argument_values
+    - avoid_slow_async_io
     - avoid_unused_constructor_parameters
     - avoid_void_async
     - cancel_subscriptions

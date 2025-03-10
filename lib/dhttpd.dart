@@ -5,6 +5,7 @@ import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
 
+import 'src/headers.dart';
 import 'src/options.dart';
 
 class Dhttpd {
@@ -36,7 +37,7 @@ class Dhttpd {
     String? path,
     int port = defaultPort,
     Object address = defaultHost,
-    Map<String, String>? headers,
+    HeaderRuleSet? headers,
     String? sslCert,
     String? sslKey,
     String? sslPassword,
@@ -63,14 +64,13 @@ class Dhttpd {
   Future<void> destroy() => _server.close();
 }
 
-Middleware _headersMiddleware(Map<String, String>? headers) =>
+Middleware _headersMiddleware(HeaderRuleSet? headers) =>
     (Handler innerHandler) => (Request request) async {
           final response = await innerHandler(request);
           final responseHeaders = Map<String, String>.from(response.headers);
-          if (headers != null) {
-            for (var entry in headers.entries) {
-              responseHeaders[entry.key] = entry.value;
-            }
+          final customHeaders = headers?.forFile(request.requestedUri.path);
+          if (customHeaders != null) {
+            responseHeaders.addAll(customHeaders.asMap());
           }
           return response.change(headers: responseHeaders);
         };

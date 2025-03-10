@@ -50,6 +50,44 @@ Server HTTPS started on port 8080
 
 See the Dart documentation of [SecurityContext.usePrivateKey](https://api.dart.dev/stable/3.3.3/dart-io/SecurityContext/usePrivateKeyBytes.html) for more details.
 
+### Headers
+
+It is possible to pass custom HTTP headers to the server. For simple use cases, pass headers with the `--headers` option, for example:
+
+```console
+$ dhttpd --headers="header=value;header2=value"
+```
+
+For more complex scenarios, you can pass a file with HTTP header rules with the `--headersfile` option. The accepted formats are JSON files with the following structure:
+
+```json
+"headers": [ {
+  "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+  "headers": [ {
+    "key": "Access-Control-Allow-Origin",
+    "value": "*"
+  } ]
+} ]
+```
+
+And plain text files with the following structure:
+
+```
+# This is a comment
+/*
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Opener-Policy: same-origin
+
+/secure/page
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+
+/static/*
+  Access-Control-Allow-Origin: *
+  X-Robots-Tag: nosnippet
+```
+
 ## Configure
 
 ```console
@@ -58,6 +96,7 @@ $ dhttpd --help
                                          (defaults to "8080")
     --path=<path>                        The path to serve. If not set, the current directory is used.
     --headers=<headers>                  HTTP headers to apply to each response. header=value;header2=value
+    --headersfile=<headersfile>          File with HTTP header rules to apply to each response.
     --host=<host>                        The hostname to listen on.
                                          (defaults to "localhost")
     --sslcert=<sslcert>                  The SSL certificate to use. Also requires sslkey
