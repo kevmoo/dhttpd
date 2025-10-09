@@ -4,7 +4,7 @@ import 'package:dhttpd/dhttpd.dart';
 import 'package:dhttpd/src/options.dart';
 
 Future<void> main(List<String> args) async {
-  Options options;
+  final Options options;
   try {
     options = parseOptions(args);
   } on FormatException catch (e) {
@@ -30,7 +30,7 @@ Future<void> main(List<String> args) async {
     sslPassword: options.sslkeypassword,
   );
 
-  print('Server HTTP${httpd.isSSL ? 'S' : ''} started on port ${options.port}');
+  print('Server started at ${httpd.urlBase}.');
 }
 
 Map<String, String> _parseKeyValuePairs(String str) => <String, String>{

@@ -18,7 +18,11 @@ class Dhttpd {
 
   int get port => _server.port;
 
-  String get urlBase => 'http://$host:$port/';
+  String get urlBase => Uri(
+        scheme: isSSL ? 'https' : 'http',
+        host: host,
+        port: port,
+      ).toString();
 
   bool get isSSL => _securityContext != null;
 

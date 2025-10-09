@@ -1,6 +1,7 @@
 ## 4.2.0-wip
 
 - Added support for `https`.
+- Add clickable link to serve output.
 - Update minimum Dart SDK to `3.2.0`.
 
 ## 4.1.0
@@ -30,7 +31,7 @@
 ## 3.0.0
 
 * Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
-* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library. 
+* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library.
 
 ## 2.0.0
 
