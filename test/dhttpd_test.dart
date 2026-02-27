@@ -76,8 +76,7 @@ void main() {
     expect(server.urlBase, startsWith('https://'));
 
     // Create a client that ignores SSL errors for self-signed certificates
-    final ioClient = HttpClient()
-      ..badCertificateCallback = ((cert, host, port) => true);
+    final ioClient = HttpClient()..badCertificateCallback = ((_, _, _) => true);
     final client = http_io.IOClient(ioClient);
 
     try {
