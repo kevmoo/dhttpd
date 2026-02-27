@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:path/path.dart' as p;
+import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
+import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
 void main() {
@@ -40,33 +41,23 @@ $ dhttpd --help
 }
 
 Future<void> _outputCheck() async {
-  final process = await _runApp(['--port=8000']);
-  final output = (await process.stdout.next).trim();
-  await process.kill();
+  await d.file('index.html', 'Hello World').create();
 
-  expect(output, equals('Server started at http://localhost:8000.'));
+  final process = await _runApp(['--port=8000', '--path', d.sandbox]);
+  final line = await process.stdout.next;
+  expect(line, 'Server started at http://localhost:8000.');
+
+  final response = await http.get(Uri.parse('http://localhost:8000'));
+  expect(response.statusCode, 200);
+  expect(response.body, 'Hello World');
+
+  await process.kill();
 }
 
 Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) {
-  final fullArgs = ['bin/dhttpd.dart', ...args];
   return TestProcess.start(
-    _dartPath,
-    fullArgs,
+    Platform.resolvedExecutable,
+    ['bin/dhttpd.dart', ...args],
     workingDirectory: workingDirectory,
   );
 }
-
-/// The path to the root directory of the SDK.
-final String _sdkDir = (() {
-  // The Dart executable is in "/path/to/sdk/bin/dart", so two levels up is
-  // "/path/to/sdk".
-  final aboveExecutable = p.dirname(p.dirname(Platform.resolvedExecutable));
-  assert(FileSystemEntity.isFileSync(p.join(aboveExecutable, 'version')));
-  return aboveExecutable;
-})();
-
-final String _dartPath = p.join(
-  _sdkDir,
-  'bin',
-  Platform.isWindows ? 'dart.exe' : 'dart',
-);
