@@ -44,14 +44,17 @@ Map<String, String> _parseKeyValuePairs(List<String> headerStrings) {
       final index = trimmedPair.indexOf('=');
       if (index == -1) {
         throw FormatException(
-            'Invalid header segment: "$trimmedPair". Expected "key=value".\n'
-            'For values with semicolons, use a separate --headers flag per header.');
+          'Invalid header segment: "$trimmedPair". Expected "key=value".\n'
+          'For values with semicolons, use a separate --headers flag '
+          'per header.',
+        );
       }
 
       final key = trimmedPair.substring(0, index).trim();
       if (key.isEmpty) {
         throw FormatException(
-            'Invalid header: "$trimmedPair". Key cannot be empty.');
+          'Invalid header: "$trimmedPair". Key cannot be empty.',
+        );
       }
 
       final value = trimmedPair.substring(index + 1).trim();

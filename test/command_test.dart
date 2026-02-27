@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:async';
 import 'dart:io';
 
@@ -78,14 +80,28 @@ Future<void> _invalidHeadersCheck() async {
   // First line might be "Unhandled exception:" if not caught or formatted by the runner
   final line1 = await process.stderr.next;
   if (line1.contains('Unhandled exception:')) {
-    expect(await process.stderr.next,
-        contains('Invalid header segment: "invalid-format". Expected "key=value".'));
+    expect(
+      await process.stderr.next,
+      contains(
+        'Invalid header segment: "invalid-format". '
+        'Expected "key=value".',
+      ),
+    );
   } else {
-    expect(line1,
-        contains('Invalid header segment: "invalid-format". Expected "key=value".'));
+    expect(
+      line1,
+      contains(
+        'Invalid header segment: "invalid-format". Expected "key=value".',
+      ),
+    );
   }
-  expect(await process.stderr.next,
-      contains('For values with semicolons, use a separate --headers flag per header.'));
+  expect(
+    await process.stderr.next,
+    contains(
+      'For values with semicolons, use a separate --headers flag '
+      'per header.',
+    ),
+  );
   await process.shouldExit(255); // Dart exits with 255 on unhandled exception
 }
 
