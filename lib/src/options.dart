@@ -32,7 +32,7 @@ class Options {
         'Can be used multiple times. '
         'Format: header=value;header2=value',
   )
-  final List<String>? headers;
+  final List<String> headers;
 
   @CliOption(
     defaultsTo: defaultHost,
@@ -65,7 +65,7 @@ class Options {
   Options({
     required this.port,
     this.path,
-    this.headers,
+    required this.headers,
     required this.host,
     this.sslcert,
     this.sslkey,

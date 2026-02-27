@@ -22,7 +22,7 @@ Future<void> main(List<String> args) async {
   final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
-    headers: _parseKeyValuePairs(options.headers ?? []),
+    headers: _parseKeyValuePairs(options.headers),
     address: options.host,
     sslCert: options.sslcert,
     sslKey: options.sslkey,
@@ -36,13 +36,26 @@ Map<String, String> _parseKeyValuePairs(List<String> headerStrings) {
   final headers = <String, String>{};
   for (var headerString in headerStrings) {
     for (var pair in headerString.split(';')) {
-      final index = pair.indexOf('=');
-      if (index == -1) continue;
-      final key = pair.substring(0, index).trim();
-      final value = pair.substring(index + 1).trim();
-      if (key.isNotEmpty) {
-        headers[key] = value;
+      final trimmedPair = pair.trim();
+      if (trimmedPair.isEmpty) {
+        continue;
       }
+
+      final index = trimmedPair.indexOf('=');
+      if (index == -1) {
+        throw FormatException(
+            'Invalid header segment: "$trimmedPair". Expected "key=value".\n'
+            'For values with semicolons, use a separate --headers flag per header.');
+      }
+
+      final key = trimmedPair.substring(0, index).trim();
+      if (key.isEmpty) {
+        throw FormatException(
+            'Invalid header: "$trimmedPair". Key cannot be empty.');
+      }
+
+      final value = trimmedPair.substring(index + 1).trim();
+      headers[key] = value;
     }
   }
   return headers;

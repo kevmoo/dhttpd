@@ -10,6 +10,7 @@ void main() {
   test('--help', () => _readmeCheck(['--help']));
   test('--port=8000', _outputCheck);
   test('custom headers', _headersCheck);
+  test('invalid headers', _invalidHeadersCheck);
 }
 
 Future<void> _readmeCheck(List<String> args) async {
@@ -52,6 +53,10 @@ Future<void> _headersCheck() async {
     'X-Custom=Value1; X-Another = Value 2',
     '--headers',
     'X-Third=Value3',
+    '--headers',
+    'X-Empty-Val=;X-With-Equals=foo=bar',
+    '--headers',
+    ' X-Spaced-Key = spaced-value ',
   ]);
   final line = await process.stdout.next;
   expect(line, 'Server started at http://localhost:8001.');
@@ -61,8 +66,27 @@ Future<void> _headersCheck() async {
   expect(response.headers['x-custom'], 'Value1');
   expect(response.headers['x-another'], 'Value 2');
   expect(response.headers['x-third'], 'Value3');
+  expect(response.headers['x-empty-val'], '');
+  expect(response.headers['x-with-equals'], 'foo=bar');
+  expect(response.headers['x-spaced-key'], 'spaced-value');
 
   await process.kill();
+}
+
+Future<void> _invalidHeadersCheck() async {
+  final process = await _runApp(['--headers', 'invalid-format']);
+  // First line might be "Unhandled exception:" if not caught or formatted by the runner
+  final line1 = await process.stderr.next;
+  if (line1.contains('Unhandled exception:')) {
+    expect(await process.stderr.next,
+        contains('Invalid header segment: "invalid-format". Expected "key=value".'));
+  } else {
+    expect(line1,
+        contains('Invalid header segment: "invalid-format". Expected "key=value".'));
+  }
+  expect(await process.stderr.next,
+      contains('For values with semicolons, use a separate --headers flag per header.'));
+  await process.shouldExit(255); // Dart exits with 255 on unhandled exception
 }
 
 Future<void> _outputCheck() async {
