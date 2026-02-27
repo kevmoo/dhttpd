@@ -3,6 +3,9 @@
 - Added support for `https`.
 - Add clickable link to serve output.
 - Update minimum Dart SDK to `3.10.0`.
+- Support multiple `--headers` flags and more robust header value parsing.
+  For example: `--headers="header1=value1;header2=value2"` or 
+  `--headers="header1=value1" --headers="header2=value2"`
 
 ## 4.1.0
 
