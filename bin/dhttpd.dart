@@ -22,8 +22,9 @@ Future<void> main(List<String> args) async {
   final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
-    headers:
-        options.headers != null ? _parseKeyValuePairs(options.headers!) : null,
+    headers: options.headers != null
+        ? _parseKeyValuePairs(options.headers!)
+        : null,
     address: options.host,
     sslCert: options.sslcert,
     sslKey: options.sslkey,
@@ -34,8 +35,7 @@ Future<void> main(List<String> args) async {
 }
 
 Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
-      for (var match in _regex.allMatches(str))
-        match.group(1)!: match.group(2)!,
-    };
+  for (var match in _regex.allMatches(str)) match.group(1)!: match.group(2)!,
+};
 
 final _regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');

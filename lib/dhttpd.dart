@@ -18,11 +18,8 @@ class Dhttpd {
 
   int get port => _server.port;
 
-  String get urlBase => Uri(
-        scheme: isSSL ? 'https' : 'http',
-        host: host,
-        port: port,
-      ).toString();
+  String get urlBase =>
+      Uri(scheme: isSSL ? 'https' : 'http', host: host, port: port).toString();
 
   bool get isSSL => _securityContext != null;
 
@@ -59,22 +56,23 @@ class Dhttpd {
         .addMiddleware(_headersMiddleware(headers))
         .addHandler(createStaticHandler(path, defaultDocument: 'index.html'));
 
-    final server = await io.serve(pipeline, address, port,
-        securityContext: securityContext);
+    final server = await io.serve(
+      pipeline,
+      address,
+      port,
+      securityContext: securityContext,
+    );
     return Dhttpd._(server, path, securityContext);
   }
 
   Future<void> destroy() => _server.close();
 }
 
-Middleware _headersMiddleware(Map<String, String>? headers) =>
-    (Handler innerHandler) => (Request request) async {
-          final response = await innerHandler(request);
-          final responseHeaders = Map<String, String>.from(response.headers);
-          if (headers != null) {
-            for (var entry in headers.entries) {
-              responseHeaders[entry.key] = entry.value;
-            }
-          }
-          return response.change(headers: responseHeaders);
-        };
+Middleware _headersMiddleware(Map<String, String>? headers) {
+  if (headers == null || headers.isEmpty) return (handler) => handler;
+
+  return (handler) => (request) async {
+    final response = await handler(request);
+    return response.change(headers: headers);
+  };
+}

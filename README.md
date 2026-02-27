@@ -44,7 +44,7 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 If you want to use HTTPS you will need to pass in the path of the SSL certificate and the SSL key file as well as the password string, if a password is set on the key, for example:
 
 ```
-$ dart bin/dhttpd.dart --sslcert=sample/server_chain.pem --sslkey=sample/server_key.pem --sslkeypassword=dartdart
+$ dart bin/dhttpd.dart --sslcert=example/server_chain.pem --sslkey=example/server_key.pem --sslkeypassword=dartdart
 Server HTTPS started on port 8080
 ```
 

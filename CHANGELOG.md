@@ -2,7 +2,7 @@
 
 - Added support for `https`.
 - Add clickable link to serve output.
-- Update minimum Dart SDK to `3.2.0`.
+- Update minimum Dart SDK to `3.10.0`.
 
 ## 4.1.0
 
