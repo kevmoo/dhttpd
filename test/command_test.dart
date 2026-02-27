@@ -77,24 +77,12 @@ Future<void> _headersCheck() async {
 
 Future<void> _invalidHeadersCheck() async {
   final process = await _runApp(['--headers', 'invalid-format']);
-  // First line might be "Unhandled exception:" if not caught or formatted by the runner
-  final line1 = await process.stderr.next;
-  if (line1.contains('Unhandled exception:')) {
-    expect(
-      await process.stderr.next,
-      contains(
-        'Invalid header segment: "invalid-format". '
-        'Expected "key=value".',
-      ),
-    );
-  } else {
-    expect(
-      line1,
-      contains(
-        'Invalid header segment: "invalid-format". Expected "key=value".',
-      ),
-    );
-  }
+  expect(
+    await process.stderr.next,
+    contains(
+      'Invalid header segment: "invalid-format". Expected "key=value".',
+    ),
+  );
   expect(
     await process.stderr.next,
     contains(
@@ -102,7 +90,7 @@ Future<void> _invalidHeadersCheck() async {
       'per header.',
     ),
   );
-  await process.shouldExit(255); // Dart exits with 255 on unhandled exception
+  await process.shouldExit(64);
 }
 
 Future<void> _outputCheck() async {

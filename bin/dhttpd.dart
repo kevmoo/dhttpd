@@ -5,8 +5,10 @@ import 'package:dhttpd/src/options.dart';
 
 Future<void> main(List<String> args) async {
   final Options options;
+  final Map<String, String> headers;
   try {
     options = parseOptions(args);
+    headers = _parseKeyValuePairs(options.headers);
   } on FormatException catch (e) {
     stderr.writeln(e.message);
     print(usage);
@@ -22,7 +24,7 @@ Future<void> main(List<String> args) async {
   final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
-    headers: _parseKeyValuePairs(options.headers),
+    headers: headers,
     address: options.host,
     sslCert: options.sslcert,
     sslKey: options.sslkey,
