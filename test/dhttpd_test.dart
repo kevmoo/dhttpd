@@ -77,7 +77,7 @@ void main() {
 
     // Create a client that ignores SSL errors for self-signed certificates
     final ioClient = HttpClient()
-      ..badCertificateCallback = ((cert, host, port) => true);
+      ..badCertificateCallback = ((_, _, _) => true);
     final client = http_io.IOClient(ioClient);
 
     try {
