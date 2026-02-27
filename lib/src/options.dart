@@ -27,9 +27,12 @@ class Options {
 
   @CliOption(
     valueHelp: 'headers',
-    help: 'HTTP headers to apply to each response. header=value;header2=value',
+    help:
+        'HTTP headers to apply to each response. '
+        'Can be used multiple times. '
+        'Format: header=value;header2=value',
   )
-  final String? headers;
+  final List<String>? headers;
 
   @CliOption(
     defaultsTo: defaultHost,

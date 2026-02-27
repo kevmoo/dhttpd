@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: lines_longer_than_80_chars
+
 part of 'options.dart';
 
 // **************************************************************************
@@ -19,7 +21,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
       int.tryParse(result['port'] as String) ??
       _$badNumberFormat(result['port'] as String, 'int', 'port'),
   path: result['path'] as String?,
-  headers: result['headers'] as String?,
+  headers: result['headers'] as List<String>,
   host: result['host'] as String,
   sslcert: result['sslcert'] as String?,
   sslkey: result['sslkey'] as String?,
@@ -40,9 +42,10 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     help: 'The path to serve. If not set, the current directory is used.',
     valueHelp: 'path',
   )
-  ..addOption(
+  ..addMultiOption(
     'headers',
-    help: 'HTTP headers to apply to each response. header=value;header2=value',
+    help:
+        'HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value',
     valueHelp: 'headers',
   )
   ..addOption(

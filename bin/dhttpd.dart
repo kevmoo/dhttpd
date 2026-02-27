@@ -22,9 +22,7 @@ Future<void> main(List<String> args) async {
   final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
-    headers: options.headers != null
-        ? _parseKeyValuePairs(options.headers!)
-        : null,
+    headers: _parseKeyValuePairs(options.headers ?? []),
     address: options.host,
     sslCert: options.sslcert,
     sslKey: options.sslkey,
@@ -34,8 +32,18 @@ Future<void> main(List<String> args) async {
   print('Server started at ${httpd.urlBase}.');
 }
 
-Map<String, String> _parseKeyValuePairs(String str) => <String, String>{
-  for (var match in _regex.allMatches(str)) match.group(1)!: match.group(2)!,
-};
-
-final _regex = RegExp(r'([\w-]+)=([\w-]+)(;|$)');
+Map<String, String> _parseKeyValuePairs(List<String> headerStrings) {
+  final headers = <String, String>{};
+  for (var headerString in headerStrings) {
+    for (var pair in headerString.split(';')) {
+      final index = pair.indexOf('=');
+      if (index == -1) continue;
+      final key = pair.substring(0, index).trim();
+      final value = pair.substring(index + 1).trim();
+      if (key.isNotEmpty) {
+        headers[key] = value;
+      }
+    }
+  }
+  return headers;
+}
