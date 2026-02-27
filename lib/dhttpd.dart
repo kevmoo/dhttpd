@@ -68,14 +68,11 @@ class Dhttpd {
   Future<void> destroy() => _server.close();
 }
 
-Middleware _headersMiddleware(Map<String, String>? headers) =>
-    (Handler innerHandler) => (Request request) async {
-      final response = await innerHandler(request);
-      final responseHeaders = Map<String, String>.from(response.headers);
-      if (headers != null) {
-        for (var entry in headers.entries) {
-          responseHeaders[entry.key] = entry.value;
-        }
-      }
-      return response.change(headers: responseHeaders);
-    };
+Middleware _headersMiddleware(Map<String, String>? headers) {
+  if (headers == null || headers.isEmpty) return (handler) => handler;
+
+  return (handler) => (request) async {
+    final response = await handler(request);
+    return response.change(headers: headers);
+  };
+}

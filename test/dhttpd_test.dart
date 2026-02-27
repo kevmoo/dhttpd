@@ -23,7 +23,10 @@ void main() {
 
     expect(response.statusCode, HttpStatus.ok);
     expect(response.body, 'Hello World');
-    expect(response.headers[HttpHeaders.contentTypeHeader], contains('text/html'));
+    expect(
+      response.headers[HttpHeaders.contentTypeHeader],
+      contains('text/html'),
+    );
   });
 
   test('custom headers', () async {
@@ -44,7 +47,9 @@ void main() {
   test('404 handling', () async {
     server = await Dhttpd.start(path: d.sandbox, port: 0);
 
-    final response = await http.get(Uri.parse('${server.urlBase}/notfound.html'));
+    final response = await http.get(
+      Uri.parse('${server.urlBase}/notfound.html'),
+    );
 
     expect(response.statusCode, HttpStatus.notFound);
   });
@@ -52,7 +57,11 @@ void main() {
   test('SSL configuration', () async {
     await d.file('index.html', 'Hello SSL').create();
 
-    final certPath = p.join(Directory.current.path, 'example', 'server_chain.pem');
+    final certPath = p.join(
+      Directory.current.path,
+      'example',
+      'server_chain.pem',
+    );
     final keyPath = p.join(Directory.current.path, 'example', 'server_key.pem');
 
     server = await Dhttpd.start(

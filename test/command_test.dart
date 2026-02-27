@@ -54,10 +54,8 @@ Future<void> _outputCheck() async {
   await process.kill();
 }
 
-Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) {
-  return TestProcess.start(
-    Platform.resolvedExecutable,
-    ['bin/dhttpd.dart', ...args],
-    workingDirectory: workingDirectory,
-  );
-}
+Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) =>
+    TestProcess.start(Platform.resolvedExecutable, [
+      'bin/dhttpd.dart',
+      ...args,
+    ], workingDirectory: workingDirectory);
