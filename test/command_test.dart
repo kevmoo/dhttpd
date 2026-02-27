@@ -49,8 +49,11 @@ Future<void> _outputCheck() async {
 
 Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) {
   final fullArgs = ['bin/dhttpd.dart', ...args];
-  return TestProcess.start(_dartPath, fullArgs,
-      workingDirectory: workingDirectory);
+  return TestProcess.start(
+    _dartPath,
+    fullArgs,
+    workingDirectory: workingDirectory,
+  );
 }
 
 /// The path to the root directory of the SDK.
@@ -62,5 +65,8 @@ final String _sdkDir = (() {
   return aboveExecutable;
 })();
 
-final String _dartPath =
-    p.join(_sdkDir, 'bin', Platform.isWindows ? 'dart.exe' : 'dart');
+final String _dartPath = p.join(
+  _sdkDir,
+  'bin',
+  Platform.isWindows ? 'dart.exe' : 'dart',
+);

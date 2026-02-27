@@ -10,26 +10,22 @@ T _$badNumberFormat<T extends num>(
   String source,
   String type,
   String argName,
-) =>
-    throw FormatException(
-      'Cannot parse "$source" into `$type` for option "$argName".',
-    );
+) => throw FormatException(
+  'Cannot parse "$source" into `$type` for option "$argName".',
+);
 
 Options _$parseOptionsResult(ArgResults result) => Options(
-      port: int.tryParse(result['port'] as String) ??
-          _$badNumberFormat(
-            result['port'] as String,
-            'int',
-            'port',
-          ),
-      path: result['path'] as String?,
-      headers: result['headers'] as String?,
-      host: result['host'] as String,
-      sslcert: result['sslcert'] as String?,
-      sslkey: result['sslkey'] as String?,
-      sslkeypassword: result['sslkeypassword'] as String?,
-      help: result['help'] as bool,
-    );
+  port:
+      int.tryParse(result['port'] as String) ??
+      _$badNumberFormat(result['port'] as String, 'int', 'port'),
+  path: result['path'] as String?,
+  headers: result['headers'] as String?,
+  host: result['host'] as String,
+  sslcert: result['sslcert'] as String?,
+  sslkey: result['sslkey'] as String?,
+  sslkeypassword: result['sslkeypassword'] as String?,
+  help: result['help'] as bool,
+);
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addOption(
@@ -70,12 +66,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     help: 'The password for the key of the SSL certificate to use.',
     valueHelp: 'sslkeypassword',
   )
-  ..addFlag(
-    'help',
-    abbr: 'h',
-    help: 'Displays the help.',
-    negatable: false,
-  );
+  ..addFlag('help', abbr: 'h', help: 'Displays the help.', negatable: false);
 
 final _$parserForOptions = _$populateOptionsParser(ArgParser());
 
