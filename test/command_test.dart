@@ -79,9 +79,7 @@ Future<void> _invalidHeadersCheck() async {
   final process = await _runApp(['--headers', 'invalid-format']);
   expect(
     await process.stderr.next,
-    contains(
-      'Invalid header segment: "invalid-format". Expected "key=value".',
-    ),
+    contains('Invalid header segment: "invalid-format". Expected "key=value".'),
   );
   expect(
     await process.stderr.next,
