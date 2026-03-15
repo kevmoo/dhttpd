@@ -10,22 +10,6 @@ const String defaultHost = 'localhost';
 @CliOptions()
 class Options {
   @CliOption(
-    abbr: 'p',
-    valueHelp: 'port',
-    defaultsTo: defaultPort,
-    help: 'The port to listen on. Provide `0` to use a random port.',
-  )
-  final int port;
-
-  @CliOption(
-    valueHelp: 'path',
-    help:
-        'The path to serve.'
-        ' If not set, the current directory is used.',
-  )
-  final String? path;
-
-  @CliOption(
     valueHelp: 'headers',
     help:
         'HTTP headers to apply to each response. '
@@ -40,6 +24,29 @@ class Options {
     help: 'The hostname to listen on.',
   )
   final String host;
+
+  @CliOption(
+    abbr: 'l',
+    negatable: false,
+    help: 'List the files in the directory if no index.html is present.',
+  )
+  final bool listFiles;
+
+  @CliOption(
+    valueHelp: 'path',
+    help:
+        'The path to serve.'
+        ' If not set, the current directory is used.',
+  )
+  final String? path;
+
+  @CliOption(
+    abbr: 'p',
+    valueHelp: 'port',
+    defaultsTo: defaultPort,
+    help: 'The port to listen on. Provide `0` to use a random port.',
+  )
+  final int port;
 
   @CliOption(
     valueHelp: 'sslcert',
@@ -62,22 +69,19 @@ class Options {
   @CliOption(abbr: 'h', negatable: false, help: 'Displays the help.')
   final bool help;
 
-  @CliOption(
-    abbr: 'l',
-    negatable: false,
-    help: 'List the files in the directory if no index.html is present.',
-  )
-  final bool listFiles;
+  @CliOption(negatable: false, help: 'Prints the version of dhttpd.')
+  final bool version;
 
   Options({
-    required this.port,
-    this.path,
     required this.headers,
     required this.host,
+    this.listFiles = false,
+    this.path,
+    required this.port,
     this.sslcert,
     this.sslkey,
     this.sslkeypassword,
     required this.help,
-    this.listFiles = false,
+    this.version = false,
   });
 }
