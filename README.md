@@ -54,7 +54,7 @@ See the Dart documentation of [SecurityContext.usePrivateKey](https://api.dart.d
 
 ```console
 $ dhttpd --help
---headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
+    --headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
     --host=<host>                        The hostname to listen on.
                                          (defaults to "localhost")
 -l, --list-files                         List the files in the directory if no index.html is present.
