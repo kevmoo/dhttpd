@@ -26,7 +26,7 @@ Future<void> _versionCheck() async {
 
 Future<void> _readmeCheck(List<String> args) async {
   final process = await _runApp(args);
-  final output = (await process.stdoutStream().join('\n')).trim();
+  final output = (await process.stdoutStream().join('\n')).trimRight();
   await process.shouldExit(0);
 
   final readme = File('README.md');
@@ -43,7 +43,7 @@ $output
 
   expect(expected, r'''```console
 $ dhttpd --help
---headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
+    --headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
     --host=<host>                        The hostname to listen on.
                                          (defaults to "localhost")
 -l, --list-files                         List the files in the directory if no index.html is present.
