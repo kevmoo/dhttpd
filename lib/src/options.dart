@@ -82,6 +82,6 @@ class Options {
     this.sslkeypassword,
     required this.help,
     this.listFiles = false,
-    required this.version,
+    this.version = false,
   });
 }

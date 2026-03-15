@@ -9,10 +9,18 @@ import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
 void main() {
+  test('prints version', () => _versionCheck());
   test('prints help', () => _readmeCheck(['--help']));
   test('serves on specified port', _outputCheck);
   test('handles custom headers', _headersCheck);
   test('rejects invalid headers', _invalidHeadersCheck);
+}
+
+Future<void> _versionCheck() async {
+  final process = await _runApp(['--version']);
+  final output = (await process.stdoutStream().join('\n')).trim();
+  await process.shouldExit(0);
+  expect(output, matches(RegExp(r'^\d+\.\d+\.\d+')));
 }
 
 Future<void> _readmeCheck(List<String> args) async {
