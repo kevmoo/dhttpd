@@ -54,7 +54,7 @@ See the Dart documentation of [SecurityContext.usePrivateKey](https://api.dart.d
 
 ```console
 $ dhttpd --help
--p, --port=<port>                        The port to listen on.
+-p, --port=<port>                        The port to listen on. Provide `0` to use a random port.
                                          (defaults to "8080")
     --path=<path>                        The path to serve. If not set, the current directory is used.
     --headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
@@ -64,6 +64,7 @@ $ dhttpd --help
     --sslkey=<sslkey>                    The key of the SSL certificate to use. Also requires sslcert
     --sslkeypassword=<sslkeypassword>    The password for the key of the SSL certificate to use.
 -h, --help                               Displays the help.
+-l, --list-files                         List the files in the directory if no index.html is present.
 ```
 
 [path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path

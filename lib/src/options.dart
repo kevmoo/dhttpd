@@ -13,7 +13,7 @@ class Options {
     abbr: 'p',
     valueHelp: 'port',
     defaultsTo: defaultPort,
-    help: 'The port to listen on.',
+    help: 'The port to listen on. Provide `0` to use a random port.',
   )
   final int port;
 
@@ -62,6 +62,13 @@ class Options {
   @CliOption(abbr: 'h', negatable: false, help: 'Displays the help.')
   final bool help;
 
+  @CliOption(
+    abbr: 'l',
+    negatable: false,
+    help: 'List the files in the directory if no index.html is present.',
+  )
+  final bool listFiles;
+
   Options({
     required this.port,
     this.path,
@@ -71,5 +78,6 @@ class Options {
     this.sslkey,
     this.sslkeypassword,
     required this.help,
+    this.listFiles = false,
   });
 }

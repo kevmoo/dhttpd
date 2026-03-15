@@ -9,10 +9,10 @@ import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
 void main() {
-  test('--help', () => _readmeCheck(['--help']));
-  test('--port=8000', _outputCheck);
-  test('custom headers', _headersCheck);
-  test('invalid headers', _invalidHeadersCheck);
+  test('prints help', () => _readmeCheck(['--help']));
+  test('serves on specified port', _outputCheck);
+  test('handles custom headers', _headersCheck);
+  test('rejects invalid headers', _invalidHeadersCheck);
 }
 
 Future<void> _readmeCheck(List<String> args) async {
@@ -23,13 +23,18 @@ Future<void> _readmeCheck(List<String> args) async {
   final readme = File('README.md');
 
   final command = ['dhttpd', ...args].join(' ');
-  final expected = '```console\n\$ $command\n$output\n```';
+  final expected =
+      '''
+```console
+\$ $command
+$output
+```''';
 
   printOnFailure(expected);
 
   expect(expected, r'''```console
 $ dhttpd --help
--p, --port=<port>                        The port to listen on.
+-p, --port=<port>                        The port to listen on. Provide `0` to use a random port.
                                          (defaults to "8080")
     --path=<path>                        The path to serve. If not set, the current directory is used.
     --headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
@@ -39,6 +44,7 @@ $ dhttpd --help
     --sslkey=<sslkey>                    The key of the SSL certificate to use. Also requires sslcert
     --sslkeypassword=<sslkeypassword>    The password for the key of the SSL certificate to use.
 -h, --help                               Displays the help.
+-l, --list-files                         List the files in the directory if no index.html is present.
 ```''');
 
   expect(readme.readAsStringSync(), contains(expected));
@@ -61,7 +67,7 @@ Future<void> _headersCheck() async {
     ' X-Spaced-Key = spaced-value ',
   ]);
   final line = await process.stdout.next;
-  expect(line, 'Server started at http://localhost:8001.');
+  expect(line, 'Serving ${d.sandbox} at http://localhost:8001');
 
   final response = await http.get(Uri.parse('http://localhost:8001'));
   expect(response.statusCode, 200);
@@ -96,7 +102,7 @@ Future<void> _outputCheck() async {
 
   final process = await _runApp(['--port=8000', '--path', d.sandbox]);
   final line = await process.stdout.next;
-  expect(line, 'Server started at http://localhost:8000.');
+  expect(line, 'Serving ${d.sandbox} at http://localhost:8000');
 
   final response = await http.get(Uri.parse('http://localhost:8000'));
   expect(response.statusCode, 200);

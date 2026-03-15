@@ -44,6 +44,21 @@ void main() {
     expect(response.headers['x-test-header'], 'TestValue');
   });
 
+  test('list files', () async {
+    await d.dir('somelistdir', [d.file('file.txt', 'Content')]).create();
+
+    server = await Dhttpd.start(
+      path: '${d.sandbox}/somelistdir',
+      port: 0,
+      listFiles: true,
+    );
+
+    final response = await http.get(Uri.parse(server.urlBase));
+
+    expect(response.statusCode, HttpStatus.ok);
+    expect(response.body, contains('file.txt'));
+  });
+
   test('404 handling', () async {
     server = await Dhttpd.start(path: d.sandbox, port: 0);
 

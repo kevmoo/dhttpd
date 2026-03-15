@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:dhttpd/dhttpd.dart';
 import 'package:dhttpd/src/options.dart';
+import 'package:dhttpd/src/utils.dart';
 
 Future<void> main(List<String> args) async {
   final Options options;
   final Map<String, String> headers;
   try {
     options = parseOptions(args);
-    headers = _parseKeyValuePairs(options.headers);
+    headers = parseKeyValuePairs(options.headers);
   } on FormatException catch (e) {
     stderr.writeln(e.message);
     print(usage);
@@ -29,39 +30,8 @@ Future<void> main(List<String> args) async {
     sslCert: options.sslcert,
     sslKey: options.sslkey,
     sslPassword: options.sslkeypassword,
+    listFiles: options.listFiles,
   );
 
-  print('Server started at ${httpd.urlBase}.');
-}
-
-Map<String, String> _parseKeyValuePairs(List<String> headerStrings) {
-  final headers = <String, String>{};
-  for (var headerString in headerStrings) {
-    for (var pair in headerString.split(';')) {
-      final trimmedPair = pair.trim();
-      if (trimmedPair.isEmpty) {
-        continue;
-      }
-
-      final index = trimmedPair.indexOf('=');
-      if (index == -1) {
-        throw FormatException(
-          'Invalid header segment: "$trimmedPair". Expected "key=value".\n'
-          'For values with semicolons, use a separate --headers flag '
-          'per header.',
-        );
-      }
-
-      final key = trimmedPair.substring(0, index).trim();
-      if (key.isEmpty) {
-        throw FormatException(
-          'Invalid header: "$trimmedPair". Key cannot be empty.',
-        );
-      }
-
-      final value = trimmedPair.substring(index + 1).trim();
-      headers[key] = value;
-    }
-  }
-  return headers;
+  print('Serving ${httpd.path} at ${httpd.urlBase}');
 }
