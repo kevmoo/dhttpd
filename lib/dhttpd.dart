@@ -7,7 +7,7 @@ import 'package:shelf_static/shelf_static.dart';
 
 import 'src/options.dart';
 
-class Dhttpd {
+final class Dhttpd {
   final HttpServer _server;
   final String path;
   final SecurityContext? _securityContext;
@@ -41,6 +41,7 @@ class Dhttpd {
     String? sslCert,
     String? sslKey,
     String? sslPassword,
+    bool listFiles = false,
   }) async {
     path ??= Directory.current.path;
 
@@ -54,7 +55,13 @@ class Dhttpd {
     final pipeline = const Pipeline()
         .addMiddleware(logRequests())
         .addMiddleware(_headersMiddleware(headers))
-        .addHandler(createStaticHandler(path, defaultDocument: 'index.html'));
+        .addHandler(
+          createStaticHandler(
+            path,
+            defaultDocument: 'index.html',
+            listDirectories: listFiles,
+          ),
+        );
 
     final server = await io.serve(
       pipeline,

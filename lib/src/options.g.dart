@@ -27,13 +27,14 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   sslkey: result['sslkey'] as String?,
   sslkeypassword: result['sslkeypassword'] as String?,
   help: result['help'] as bool,
+  listFiles: result['list-files'] as bool,
 );
 
 ArgParser _$populateOptionsParser(ArgParser parser) => parser
   ..addOption(
     'port',
     abbr: 'p',
-    help: 'The port to listen on.',
+    help: 'The port to listen on. Provide `0` to use a random port.',
     valueHelp: 'port',
     defaultsTo: '8080',
   )
@@ -69,7 +70,13 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     help: 'The password for the key of the SSL certificate to use.',
     valueHelp: 'sslkeypassword',
   )
-  ..addFlag('help', abbr: 'h', help: 'Displays the help.', negatable: false);
+  ..addFlag('help', abbr: 'h', help: 'Displays the help.', negatable: false)
+  ..addFlag(
+    'list-files',
+    abbr: 'l',
+    help: 'List the files in the directory if no index.html is present.',
+    negatable: false,
+  );
 
 final _$parserForOptions = _$populateOptionsParser(ArgParser());
 

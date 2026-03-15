@@ -1,11 +1,13 @@
-## 4.2.0-wip
+## 4.2.0
 
 - Added support for `https`.
-- Add clickable link to serve output.
-- Update minimum Dart SDK to `3.10.0`.
 - Support multiple `--headers` flags and more robust header value parsing.
   For example: `--headers="header1=value1;header2=value2"` or 
   `--headers="header1=value1" --headers="header2=value2"`
+- Add `--list-files` flag to show a directory listing when no `index.html` is 
+  present.
+- Add clickable link to serve output.
+- Require `sdk: ^3.10.0`.
 
 ## 4.1.0
 
