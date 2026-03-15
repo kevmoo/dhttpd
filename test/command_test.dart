@@ -3,13 +3,14 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dhttpd/src/version.dart';
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 import 'package:test_process/test_process.dart';
 
 void main() {
-  test('prints version', () => _versionCheck());
+  test('prints version', _versionCheck);
   test('prints help', () => _readmeCheck(['--help']));
   test('serves on specified port', _outputCheck);
   test('handles custom headers', _headersCheck);
@@ -20,7 +21,7 @@ Future<void> _versionCheck() async {
   final process = await _runApp(['--version']);
   final output = (await process.stdoutStream().join('\n')).trim();
   await process.shouldExit(0);
-  expect(output, matches(RegExp(r'^\d+\.\d+\.\d+')));
+  expect(output, packageVersion);
 }
 
 Future<void> _readmeCheck(List<String> args) async {
@@ -42,17 +43,17 @@ $output
 
   expect(expected, r'''```console
 $ dhttpd --help
--p, --port=<port>                        The port to listen on. Provide `0` to use a random port.
-                                         (defaults to "8080")
-    --path=<path>                        The path to serve. If not set, the current directory is used.
-    --headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
+--headers=<headers>                  HTTP headers to apply to each response. Can be used multiple times. Format: header=value;header2=value
     --host=<host>                        The hostname to listen on.
                                          (defaults to "localhost")
+-l, --list-files                         List the files in the directory if no index.html is present.
+    --path=<path>                        The path to serve. If not set, the current directory is used.
+-p, --port=<port>                        The port to listen on. Provide `0` to use a random port.
+                                         (defaults to "8080")
     --sslcert=<sslcert>                  The SSL certificate to use. Also requires sslkey
     --sslkey=<sslkey>                    The key of the SSL certificate to use. Also requires sslcert
     --sslkeypassword=<sslkeypassword>    The password for the key of the SSL certificate to use.
 -h, --help                               Displays the help.
--l, --list-files                         List the files in the directory if no index.html is present.
     --version                            Prints the version of dhttpd.
 ```''');
 
