@@ -2,12 +2,15 @@ import 'dart:io';
 
 import 'package:dhttpd/dhttpd.dart';
 import 'package:dhttpd/src/options.dart';
+import 'package:dhttpd/src/utils.dart';
 import 'package:dhttpd/src/version.dart';
 
 Future<void> main(List<String> args) async {
-  Options options;
+  final Options options;
+  final Map<String, String> headers;
   try {
     options = parseOptions(args);
+    headers = parseKeyValuePairs(options.headers);
   } on FormatException catch (e) {
     stderr.writeln(e.message);
     print(usage);
@@ -25,11 +28,16 @@ Future<void> main(List<String> args) async {
     return;
   }
 
-  await Dhttpd.start(
+  final httpd = await Dhttpd.start(
     path: options.path,
     port: options.port,
+    headers: headers,
     address: options.host,
+    sslCert: options.sslcert,
+    sslKey: options.sslkey,
+    sslPassword: options.sslkeypassword,
+    listFiles: options.listFiles,
   );
 
-  print('Server started on port ${options.port}');
+  print('Serving ${httpd.path} at ${httpd.urlBase}');
 }

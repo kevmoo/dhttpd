@@ -1,3 +1,20 @@
+## 4.2.0
+
+- Added support for `https`.
+- Support multiple `--headers` flags and more robust header value parsing.
+  For example: `--headers="header1=value1;header2=value2"` or 
+  `--headers="header1=value1" --headers="header2=value2"`
+- Add `--list-files` flag to show a directory listing when no `index.html` is 
+  present.
+- Add clickable link to serve output.
+- Require `sdk: ^3.10.0`.
+
+## 4.1.0
+
+- Add "headers" option to add additional response headers.
+  For example: `--headers="header1=value;header2=value;"`
+- Update minimum Dart SDK to `3.0.0`.
+
 ## 4.0.1
 
 - Improve README
@@ -19,7 +36,7 @@
 ## 3.0.0
 
 * Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
-* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library. 
+* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library.
 
 ## 2.0.0
 
