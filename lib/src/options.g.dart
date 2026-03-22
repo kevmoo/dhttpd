@@ -24,6 +24,7 @@ Options _$parseOptionsResult(ArgResults result) => Options(
   port:
       int.tryParse(result['port'] as String) ??
       _$badNumberFormat(result['port'] as String, 'int', 'port'),
+  quiet: result['quiet'] as bool,
   sslcert: result['sslcert'] as String?,
   sslkey: result['sslkey'] as String?,
   sslkeypassword: result['sslkeypassword'] as String?,
@@ -62,6 +63,7 @@ ArgParser _$populateOptionsParser(ArgParser parser) => parser
     valueHelp: 'port',
     defaultsTo: '8080',
   )
+  ..addFlag('quiet', abbr: 'q', help: 'Disable logging.', negatable: false)
   ..addOption(
     'sslcert',
     help: 'The SSL certificate to use. Also requires sslkey',

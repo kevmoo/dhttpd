@@ -15,6 +15,7 @@ void main() {
   test('serves on specified port', _outputCheck);
   test('handles custom headers', _headersCheck);
   test('rejects invalid headers', _invalidHeadersCheck);
+  test('does not log requests when quiet', _quietCheck);
 }
 
 Future<void> _versionCheck() async {
@@ -50,6 +51,7 @@ $ dhttpd --help
     --path=<path>                        The path to serve. If not set, the current directory is used.
 -p, --port=<port>                        The port to listen on. Provide `0` to use a random port.
                                          (defaults to "8080")
+-q, --quiet                              Disable logging.
     --sslcert=<sslcert>                  The SSL certificate to use. Also requires sslkey
     --sslkey=<sslkey>                    The key of the SSL certificate to use. Also requires sslcert
     --sslkeypassword=<sslkeypassword>    The password for the key of the SSL certificate to use.
@@ -119,6 +121,21 @@ Future<void> _outputCheck() async {
   expect(response.body, 'Hello World');
 
   await process.kill();
+}
+
+Future<void> _quietCheck() async {
+  await d.file('index.html', 'Hello World').create();
+
+  final process = await _runApp(['--port=8002', '--path', d.sandbox, '--quiet']);
+  final line = await process.stdout.next;
+  expect(line, 'Serving ${d.sandbox} at http://localhost:8002');
+
+  final response = await http.get(Uri.parse('http://localhost:8002'));
+  expect(response.statusCode, 200);
+  expect(response.body, 'Hello World');
+
+  await process.kill();
+  expect(await process.stdout.rest.toList(), isEmpty);
 }
 
 Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) =>

@@ -37,6 +37,7 @@ Future<void> main(List<String> args) async {
     sslKey: options.sslkey,
     sslPassword: options.sslkeypassword,
     listFiles: options.listFiles,
+    quiet: options.quiet,
   );
 
   print('Serving ${httpd.path} at ${httpd.urlBase}');

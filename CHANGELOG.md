@@ -1,4 +1,6 @@
-## 4.2.1-wip
+## 4.3.0
+
+- Added `--quiet` flag to disable request logging.
 
 ## 4.2.0
 
