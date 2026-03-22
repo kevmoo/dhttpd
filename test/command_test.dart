@@ -126,7 +126,12 @@ Future<void> _outputCheck() async {
 Future<void> _quietCheck() async {
   await d.file('index.html', 'Hello World').create();
 
-  final process = await _runApp(['--port=8002', '--path', d.sandbox, '--quiet']);
+  final process = await _runApp([
+    '--port=8002',
+    '--path',
+    d.sandbox,
+    '--quiet',
+  ]);
   final line = await process.stdout.next;
   expect(line, 'Serving ${d.sandbox} at http://localhost:8002');
 

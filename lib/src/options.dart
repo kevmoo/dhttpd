@@ -48,11 +48,7 @@ class Options {
   )
   final int port;
 
-  @CliOption(
-    abbr: 'q',
-    negatable: false,
-    help: 'Disable logging.',
-  )
+  @CliOption(abbr: 'q', negatable: false, help: 'Disable logging.')
   final bool quiet;
 
   @CliOption(
