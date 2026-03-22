@@ -23,16 +23,37 @@ final class Dhttpd {
 
   bool get isSSL => _securityContext != null;
 
-  /// [address] can either be a [String] or an
+  /// Starts an HTTP server serving static files from a directory.
+  ///
+  /// The [path] specifies the directory to serve. If omitted, the current
+  /// working directory is used.
+  ///
+  /// The server will listen on the specified [port], which defaults to
+  /// [defaultPort] (`8080`). If [port] is `0`, a random available port
+  /// will be chosen.
+  ///
+  /// The [address] can either be a [String] or an
   /// [InternetAddress]. If [address] is a [String], [start] will
   /// perform a [InternetAddress.lookup] and use the first value in the
   /// list. To listen on the loopback adapter, which will allow only
   /// incoming connections from the local host, use the value
   /// [InternetAddress.loopbackIPv4] or
   /// [InternetAddress.loopbackIPv6]. To allow for incoming
-  /// connection from the network use either one of the values
+  /// connections from the network, use either one of the values
   /// [InternetAddress.anyIPv4] or [InternetAddress.anyIPv6] to
-  /// bind to all interfaces or the IP address of a specific interface.
+  /// bind to all interfaces, or use the IP address of a specific interface.
+  ///
+  /// HTTP headers provided in [headers] will be applied to every response
+  /// returned by the server.
+  ///
+  /// To serve over HTTPS, provide both [sslCert] and [sslKey]. These should
+  /// be paths to the certificate chain and private key, respectively. If the
+  /// private key is password-protected, [sslPassword] must also be provided.
+  ///
+  /// If [listFiles] is `true`, a directory listing will be displayed when
+  /// navigating to a directory that does not contain an `index.html` file.
+  ///
+  /// If [quiet] is `true`, request logging will be disabled.
   static Future<Dhttpd> start({
     String? path,
     int port = defaultPort,
@@ -42,6 +63,7 @@ final class Dhttpd {
     String? sslKey,
     String? sslPassword,
     bool listFiles = false,
+    bool quiet = false,
   }) async {
     path ??= Directory.current.path;
 
@@ -52,8 +74,13 @@ final class Dhttpd {
         ..usePrivateKey(sslKey, password: sslPassword);
     }
 
-    final pipeline = const Pipeline()
-        .addMiddleware(logRequests())
+    var pipeline = const Pipeline();
+
+    if (!quiet) {
+      pipeline = pipeline.addMiddleware(logRequests());
+    }
+
+    final handler = pipeline
         .addMiddleware(_headersMiddleware(headers))
         .addHandler(
           createStaticHandler(
@@ -64,7 +91,7 @@ final class Dhttpd {
         );
 
     final server = await io.serve(
-      pipeline,
+      handler,
       address,
       port,
       securityContext: securityContext,

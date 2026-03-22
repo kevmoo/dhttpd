@@ -48,6 +48,9 @@ class Options {
   )
   final int port;
 
+  @CliOption(abbr: 'q', negatable: false, help: 'Disable logging.')
+  final bool quiet;
+
   @CliOption(
     valueHelp: 'sslcert',
     help: 'The SSL certificate to use. Also requires sslkey',
@@ -78,6 +81,7 @@ class Options {
     this.listFiles = false,
     this.path,
     required this.port,
+    this.quiet = false,
     this.sslcert,
     this.sslkey,
     this.sslkeypassword,
