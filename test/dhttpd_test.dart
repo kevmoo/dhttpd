@@ -1,10 +1,11 @@
 import 'dart:io';
 
+import 'package:checks/checks.dart';
 import 'package:dhttpd/dhttpd.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart' as http_io;
 import 'package:path/path.dart' as p;
-import 'package:test/test.dart';
+import 'package:test/scaffolding.dart';
 import 'package:test_descriptor/test_descriptor.dart' as d;
 
 void main() {
@@ -21,12 +22,11 @@ void main() {
 
     final response = await http.get(Uri.parse(server.urlBase));
 
-    expect(response.statusCode, HttpStatus.ok);
-    expect(response.body, 'Hello World');
-    expect(
+    check(response.statusCode).equals(HttpStatus.ok);
+    check(response.body).equals('Hello World');
+    check(
       response.headers[HttpHeaders.contentTypeHeader],
-      contains('text/html'),
-    );
+    ).isNotNull().contains('text/html');
   });
 
   test('custom headers', () async {
@@ -40,8 +40,8 @@ void main() {
 
     final response = await http.get(Uri.parse(server.urlBase));
 
-    expect(response.statusCode, HttpStatus.ok);
-    expect(response.headers['x-test-header'], 'TestValue');
+    check(response.statusCode).equals(HttpStatus.ok);
+    check(response.headers['x-test-header']).equals('TestValue');
   });
 
   test('list files', () async {
@@ -55,8 +55,8 @@ void main() {
 
     final response = await http.get(Uri.parse(server.urlBase));
 
-    expect(response.statusCode, HttpStatus.ok);
-    expect(response.body, contains('file.txt'));
+    check(response.statusCode).equals(HttpStatus.ok);
+    check(response.body).contains('file.txt');
   });
 
   test('404 handling', () async {
@@ -66,7 +66,7 @@ void main() {
       Uri.parse('${server.urlBase}/notfound.html'),
     );
 
-    expect(response.statusCode, HttpStatus.notFound);
+    check(response.statusCode).equals(HttpStatus.notFound);
   });
 
   test('SSL configuration', () async {
@@ -87,8 +87,8 @@ void main() {
       sslPassword: 'dartdart',
     );
 
-    expect(server.isSSL, isTrue);
-    expect(server.urlBase, startsWith('https://'));
+    check(server.isSSL).isTrue();
+    check(server.urlBase).startsWith('https://');
 
     // Create a client that ignores SSL errors for self-signed certificates
     final ioClient = HttpClient()..badCertificateCallback = ((_, _, _) => true);
@@ -96,8 +96,8 @@ void main() {
 
     try {
       final response = await client.get(Uri.parse(server.urlBase));
-      expect(response.statusCode, HttpStatus.ok);
-      expect(response.body, 'Hello SSL');
+      check(response.statusCode).equals(HttpStatus.ok);
+      check(response.body).equals('Hello SSL');
     } finally {
       client.close();
     }
