@@ -5,10 +5,10 @@
 ## 4.2.0
 
 - Added support for `https`.
-- Support multiple `--headers` flags and more robust header value parsing.
-  For example: `--headers="header1=value1;header2=value2"` or 
+- Support multiple `--headers` flags and more robust header value parsing. For
+  example: `--headers="header1=value1;header2=value2"` or
   `--headers="header1=value1" --headers="header2=value2"`
-- Added `--list-files` flag to show a directory listing when no `index.html` is 
+- Added `--list-files` flag to show a directory listing when no `index.html` is
   present.
 - Added `--version` flag.
 - Added clickable link to serve output.
@@ -16,8 +16,8 @@
 
 ## 4.1.0
 
-- Add "headers" option to add additional response headers.
-  For example: `--headers="header1=value;header2=value;"`
+- Add "headers" option to add additional response headers. For example:
+  `--headers="header1=value;header2=value;"`
 - Update minimum Dart SDK to `3.0.0`.
 
 ## 4.0.1
@@ -40,32 +40,31 @@
 
 ## 3.0.0
 
-* Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
-* Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library.
+- Set Dart SDK constraint to '>=2.0.0-dev.48.0 <3.0.0'.
+- Removed top-level fields `DEFAULT_PORT` and `DEFAULT_HOST` from library.
 
 ## 2.0.0
 
-* Removed `allow-origin` flag. In reality, this flag never worked because the
+- Removed `allow-origin` flag. In reality, this flag never worked because the
   `shelf` pipeline was not configured correctly.
 
-* Source moved to [github.com/kevmoo/dhttpd](https://github.com/kevmoo/dhttpd).
+- Source moved to [github.com/kevmoo/dhttpd](https://github.com/kevmoo/dhttpd).
 
 ## 1.0.0
 
-* No change in functionality, just version and doc tweaks.
+- No change in functionality, just version and doc tweaks.
 
 ## 0.3.1
 
-* Fixed bug with setting the path from the command line.
-* Start the server with `dhttpd`.
+- Fixed bug with setting the path from the command line.
+- Start the server with `dhttpd`.
 
 ## 0.3.0
 
-* New `host` command-line flag, to set
-  the hostname to listen on. Defaults
-  to `localhost`
+- New `host` command-line flag, to set the hostname to listen on. Defaults to
+  `localhost`
 
 ## 0.2.0
 
-* New `allow-origin` command-line flag for CORS headers.
-  Thanks to @gmosx for the patch.
+- New `allow-origin` command-line flag for CORS headers. Thanks to @gmosx for
+  the patch.
