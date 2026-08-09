@@ -2,8 +2,8 @@
 [![CI](https://github.com/kevmoo/dhttpd/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kevmoo/dhttpd/actions/workflows/ci.yml)
 [![package publisher](https://img.shields.io/pub/publisher/dhttpd.svg)](https://pub.dev/packages/dhttpd/publisher)
 
-A simple HTTP server that can serve up any directory, built with Dart.
-Inspired by `python -m SimpleHTTPServer`.
+A simple HTTP server that can serve up any directory, built with Dart. Inspired
+by `python -m SimpleHTTPServer`.
 
 ## Install
 
@@ -15,8 +15,8 @@ $ dart pub global activate dhttpd
 
 ## Use
 
-If you have [modified your PATH][path], you can run this server from any
-local directory.
+If you have [modified your PATH][path], you can run this server from any local
+directory.
 
 ```console
 $ dhttpd
@@ -28,8 +28,7 @@ Otherwise you can use the `dart pub global` command.
 $ dart pub global run dhttpd
 ```
 
-Here's an example of creating a web app
-and then running it with this server:
+Here's an example of creating a web app and then running it with this server:
 
 ```console
 $ dart create -t web web_app
@@ -41,14 +40,18 @@ $ dhttpd --path build/web/  # Serves app at http://localhost:8080
 
 ### HTTPS
 
-If you want to use HTTPS you will need to pass in the path of the SSL certificate and the SSL key file as well as the password string, if a password is set on the key, for example:
+If you want to use HTTPS you will need to pass in the path of the SSL
+certificate and the SSL key file as well as the password string, if a password
+is set on the key, for example:
 
 ```
 $ dart bin/dhttpd.dart --sslcert=example/server_chain.pem --sslkey=example/server_key.pem --sslkeypassword=dartdart
 Server HTTPS started on port 8080
 ```
 
-See the Dart documentation of [SecurityContext.usePrivateKey](https://api.dart.dev/stable/3.3.3/dart-io/SecurityContext/usePrivateKeyBytes.html) for more details.
+See the Dart documentation of
+[SecurityContext.usePrivateKey](https://api.dart.dev/stable/3.3.3/dart-io/SecurityContext/usePrivateKeyBytes.html)
+for more details.
 
 ## Configure
 
@@ -69,4 +72,5 @@ $ dhttpd --help
     --version                            Prints the version of dhttpd.
 ```
 
-[path]: https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path
+[path]:
+  https://dart.dev/tools/pub/cmd/pub-global#running-a-script-from-your-path
