@@ -1,11 +1,11 @@
 name: dhttpd
-version: 4.3.0
+version: 4.3.1-wip
 
 description: A static HTTP file server for easy local hosting of a directory.
 repository: https://github.com/kevmoo/dhttpd
 
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.12.0
 
 dependencies:
   args: ^2.0.0
@@ -14,6 +14,7 @@ dependencies:
   shelf_static: ^1.0.0
 
 dev_dependencies:
+  api_summary: ^1.2.0
   build_cli: ^2.1.2
   build_runner: ^2.0.0
   build_verify: ^3.0.0

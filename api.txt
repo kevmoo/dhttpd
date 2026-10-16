@@ -1,0 +1,21 @@
+environment:
+  sdk: ^3.12.0
+executables:
+  dhttpd
+package:dhttpd/dhttpd.dart:
+  Dhttpd (class extends Object, final):
+    start (static method: Future<Dhttpd> Function({Object address, Map<String, String>? headers, bool listFiles, String? path, int port, bool quiet, String? sslCert, String? sslKey, String? sslPassword}))
+    host (getter: String)
+    isSSL (getter: bool)
+    path (getter: String)
+    port (getter: int)
+    urlBase (getter: String)
+    destroy (method: Future<void> Function())
+dart:async:
+  Future (referenced)
+dart:core:
+  Map (referenced)
+  Object (referenced)
+  String (referenced)
+  bool (referenced)
+  int (referenced)
