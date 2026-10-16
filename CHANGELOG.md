@@ -1,3 +1,7 @@
+## 4.3.1-wip
+
+- Require `sdk: ^3.12.0`.
+
 ## 4.3.0
 
 - Added `--quiet` flag to disable request logging.
