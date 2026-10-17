@@ -8,7 +8,7 @@ import 'package:checks/checks.dart';
 import 'package:test/scaffolding.dart';
 
 void main() {
-  for (final package in ['build_version@2.2.0', 'build_cli@2.3.0']) {
+  for (final package in ['build_version@2.2.0', 'build_cli@2.3.1']) {
     test('ensure_build ($package)', () async {
       final result = await Process.run(Platform.resolvedExecutable, [
         'run',
