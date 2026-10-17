@@ -2,9 +2,23 @@
 @Tags(['presubmit-only'])
 library;
 
-import 'package:build_verify/build_verify.dart';
+import 'dart:io';
+
+import 'package:checks/checks.dart';
 import 'package:test/scaffolding.dart';
 
 void main() {
-  test('ensure_build', expectBuildClean);
+  for (final package in ['build_version@2.2.0', 'build_cli@2.3.1']) {
+    test('ensure_build ($package)', () async {
+      final result = await Process.run(Platform.resolvedExecutable, [
+        'run',
+        package,
+        '--check',
+      ]);
+      check(
+        result.exitCode,
+        because: 'stdout: ${result.stdout}\nstderr: ${result.stderr}',
+      ).equals(0);
+    });
+  }
 }
