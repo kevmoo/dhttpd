@@ -1,6 +1,8 @@
 ## 4.3.1-wip
 
 - Require `sdk: ^3.12.0`.
+- Update generated CLI options and version metadata (`build_cli 2.3.2`,
+  `build_version 2.2.1`).
 
 ## 4.3.0
 
