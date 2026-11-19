@@ -137,7 +137,7 @@ Future<void> _quietCheck() async {
   check(response.body).equals('Hello World');
 
   await process.kill();
-  check(await process.stdout.rest.toList()).isEmpty();
+  check(await process.stdout.rest.toList()).isEmpty;
 }
 
 Future<TestProcess> _runApp(List<String> args, {String? workingDirectory}) =>

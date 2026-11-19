@@ -48,14 +48,14 @@ void main() {
     test('throws FormatException if a segment lacks an equals sign', () {
       check(() => parseKeyValuePairs(['KeyOnly']))
           .throws<FormatException>()
-          .has((e) => e.message, 'message')
+          .has('message', (e) => e.message)
           .contains('Expected "key=value"');
     });
 
     test('throws FormatException if key is empty', () {
       check(() => parseKeyValuePairs(['=Value']))
           .throws<FormatException>()
-          .has((e) => e.message, 'message')
+          .has('message', (e) => e.message)
           .contains('Key cannot be empty');
     });
   });

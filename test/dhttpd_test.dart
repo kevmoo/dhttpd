@@ -87,7 +87,7 @@ void main() {
       sslPassword: 'dartdart',
     );
 
-    check(server.isSSL).isTrue();
+    check(server.isSSL).isTrue;
     check(server.urlBase).startsWith('https://');
 
     // Create a client that ignores SSL errors for self-signed certificates
